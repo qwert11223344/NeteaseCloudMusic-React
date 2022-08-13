@@ -1,14 +1,20 @@
 .commonHeaderRcm {
   display: flex;
+  position: relative;
   justify-content: space-between;
   height: 33px;
   padding: 0 10px 0 0;
-  padding-left: 34px;
   border-bottom: 2px solid #c10d0c;
-  background: url('/assets/img/sprite_02.png') no-repeat center;
-  background-position: -225px -156px;
   line-height: 33px;
   :global {
+    .doct-icon {
+      position: absolute;
+      height: 100%;
+      width: 34px;
+      left: 0;
+      background: url('/assets/img/sprite_02.png') no-repeat center;
+      background-position: -225px -156px;
+    }
     .common-header-left {
       display: flex;
       .hot-title {

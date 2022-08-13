@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
 import recommendReducer from './recommend';
-const reducer = combineReducers({ recommendReducer });
+import topListReducer from './toplist';
+const reducer = combineReducers({ recommendReducer, topListReducer });
 export default reducer;

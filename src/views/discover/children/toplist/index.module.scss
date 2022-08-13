@@ -1,0 +1,21 @@
+.discoverTopList {
+  width: 982px;
+  margin: 0 auto;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  :global {
+    .discoverTopListContent {
+      display: flex;
+      .left {
+        width: 240px;
+        background: #f9f9f9;
+        .top-list-container {
+          margin-top: 40px;
+        }
+      }
+      .right {
+        width: 740px;
+      }
+    }
+  }
+}

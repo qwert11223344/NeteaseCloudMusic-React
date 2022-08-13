@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import propTypes from 'prop-types';
-export default function RecommendHeader({ title }) {
+export default function RecommendHeader({ title, left, right }) {
   return (
     <div className={styles.recommendHeader}>
       <div className='recommend-header-left'>

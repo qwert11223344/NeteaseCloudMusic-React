@@ -2,19 +2,25 @@ import styles from './index.module.scss';
 import propTypes from 'prop-types';
 export default function CommonHeaderRcm({
   title,
+  left,
   keywords,
   showIcon,
   right,
   clickKeywords
 }) {
   return (
-    <div className={styles.commonHeaderRcm}>
+    <div
+      className={styles.commonHeaderRcm}
+      style={{ paddingLeft: showIcon ? 34 : 0 }}
+    >
+      {showIcon && <div className='doct-icon'></div>}
       <div className='common-header-left'>
         <h2 className='hot-title'>
           <a href='/discover/recommend' className='no-link hot-text'>
             {title}
           </a>
         </h2>
+        {left}
         <ul className='keywords'>
           {keywords.map(item => {
             return (
@@ -45,7 +51,6 @@ export default function CommonHeaderRcm({
 CommonHeaderRcm.propTypes = {
   title: propTypes.string.isRequired,
   keywords: propTypes.array,
-  right: propTypes.string,
   showIcon: propTypes.bool,
   clickKeywords: propTypes.func
 };

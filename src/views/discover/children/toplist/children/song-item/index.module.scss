@@ -1,0 +1,102 @@
+.songItemContainer {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  &:nth-child(odd) {
+    background: #f7f7f7 !important;
+  }
+  &:nth-child(-n + 3) {
+    height: 70px !important;
+  }
+
+  :global {
+    .song-wrapper {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      img {
+        margin-right: 20px;
+      }
+      .rank-count {
+        display: flex;
+        justify-content: center;
+        width: 80px;
+        color: #999;
+      }
+
+      .song-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .font-active {
+          font-size: 15px;
+          cursor: pointer;
+          margin-right: 8px;
+        }
+        .font-active:active {
+          color: #d31111;
+        }
+        .dr-btn {
+          width: 91px;
+          .btn-group {
+            width: 79px;
+            height: 18px;
+            display: none;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+            .btn {
+              display: inline-block;
+              width: 17px;
+              height: 15px;
+              cursor: pointer;
+              &.add {
+                width: 13px;
+                height: 13px;
+                background: url('/assets/img/sprite_icon2.png') no-repeat 0
+                  9999px;
+                background-position: 0 -700px;
+              }
+              &.collect {
+                background: url('/assets/img/sprite_table.png') no-repeat 0
+                  9999px;
+                background-position: 0 -174px;
+              }
+              &.share {
+                background: url('/assets/img/sprite_table.png') no-repeat 0
+                  9999px;
+                background-position: 0 -194px;
+              }
+              &.download {
+                background: url('/assets/img/sprite_table.png') no-repeat 0
+                  9999px;
+                background-position: -80px -174px;
+              }
+            }
+          }
+        }
+
+        &:hover .btn-group {
+          display: flex;
+        }
+        &:hover .duration {
+          display: none;
+        }
+        .left-info {
+          display: flex;
+          align-items: center;
+        }
+        .left-info > a {
+          display: inline-block;
+          width: 190px;
+        }
+        .singer {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 160px;
+        }
+      }
+    }
+  }
+}
