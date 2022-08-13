@@ -1,18 +1,21 @@
 import './App.css';
 import '@/assets/style/reset.css';
 import Header from 'components/header';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Footer from 'components/footer';
 import Home from './views';
-
+import { Provider } from 'react-redux';
+import store from './store';
 function App() {
   return (
-    <Router>
-      <Header />
-      {/* 容器 */}
-      <Home />
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Header />
+        {/* 容器 */}
+        <Home />
+        <Footer />
+      </Router>
+    </Provider>
   );
 }
 

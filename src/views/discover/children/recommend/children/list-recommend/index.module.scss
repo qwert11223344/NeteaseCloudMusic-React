@@ -1,0 +1,10 @@
+.listRecommend {
+  margin-bottom: 15px;
+  :global {
+    .ranking-info {
+      display: flex;
+      margin-top: 17px;
+      background: url('/assets/img/recommend-top-bg.png');
+    }
+  }
+}

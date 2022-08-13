@@ -1,0 +1,48 @@
+.albumCover {
+  font-size: 12px;
+  :global {
+    .album-image {
+      position: relative;
+      // height: ${props => props.size + 'px'};
+      margin-top: 15px;
+      img {
+        &:hover {
+          cursor: pointer;
+        }
+        &:hover + .play {
+          display: block;
+        }
+      }
+      .play {
+        display: inline-block;
+        position: absolute;
+        right: 40px;
+        bottom: 10px;
+        display: none;
+        width: 16px;
+        height: 17px;
+        background-position: 0 0;
+      }
+      .cover {
+        text-indent: -9999px;
+
+        // background-position: 0 ${props => props.bgp};
+      }
+    }
+    .album-name,
+    .artist {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .album-name {
+      // width: ${props => props.size};
+      color: #000;
+    }
+
+    .artist {
+      color: #666;
+    }
+  }
+}

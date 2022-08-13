@@ -1,0 +1,9 @@
+.hotAnchor {
+  margin-top: 30px;
+
+  :global {
+    .anchor-container {
+      margin: 20px 0 0 20px;
+    }
+  }
+}

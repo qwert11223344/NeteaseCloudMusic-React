@@ -1,0 +1,10 @@
+.hotRecommend {
+  margin-top: 6px;
+  :global {
+    .recommend-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+}
