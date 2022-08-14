@@ -1,6 +1,9 @@
 import { getCount, getImageSize } from '@/utils';
 import styles from './index.module.scss';
 export default function SongCover({ info }) {
+  const imgUrl = info.picUrl || info.coverImgUrl;
+  const writer =
+    (info && info.copywriter) || info.nickname || info.creator.nickname;
   return (
     <a
       className={styles.songCover}
@@ -8,7 +11,7 @@ export default function SongCover({ info }) {
       href={`#/playlist?id=${info.id}`}
     >
       <div className='cover-wrapper'>
-        <img src={getImageSize(info.picUrl, 140)} alt={info.name} />
+        <img src={getImageSize(imgUrl, 140)} alt={info.name} />
         <div className='cover-mask sprite_cover'>
           <div className='bottom-bar sprite_cover'>
             <span>
@@ -20,9 +23,7 @@ export default function SongCover({ info }) {
         </div>
       </div>
       <div className='cover-title'>{info.name}</div>
-      <div className='cover-source'>
-        {(info && info.copywriter) || info.nickname}
-      </div>
+      <div className='cover-source'>{writer}</div>
     </a>
   );
 }

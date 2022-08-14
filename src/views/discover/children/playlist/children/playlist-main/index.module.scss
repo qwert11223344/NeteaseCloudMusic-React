@@ -1,0 +1,10 @@
+.playListMain {
+  :global {
+    .songs-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0 20px;
+    }
+  }
+}
