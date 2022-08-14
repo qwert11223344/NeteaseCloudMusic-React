@@ -1,9 +1,9 @@
 import { getCount, getImageSize } from '@/utils';
 import styles from './index.module.scss';
 export default function SongCover({ info }) {
-  const imgUrl = info.picUrl || info.coverImgUrl;
+  const imgUrl = info?.picUrl || info?.coverImgUrl;
   const writer =
-    (info && info.copywriter) || info.nickname || info.creator.nickname;
+    (info && info.copywriter) || info?.nickname || info?.creator?.nickname;
   return (
     <a
       className={styles.songCover}
