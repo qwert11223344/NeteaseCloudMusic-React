@@ -1,0 +1,102 @@
+.commonLogin {
+  :global {
+    .login-wrapper {
+      .ant-modal-close {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        color: #ccc;
+      }
+      .ant-modal-header {
+        padding: 0;
+        padding-left: 20px;
+        background-color: #2d2d2d;
+
+        .ant-modal-title {
+          height: 38px;
+          width: 467px;
+          line-height: 38px;
+          color: #fff;
+          font-weight: 700;
+        }
+      }
+      .ant-modal-content {
+        // display: flex;
+      }
+    }
+    .gap {
+      margin-right: 15px;
+    }
+    .login-container {
+      display: flex;
+      justify-content: center;
+      .alreadyScan {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        text-align: center;
+        img {
+          width: 140px;
+        }
+      }
+      .login-container-left {
+        width: 125px;
+        height: 220px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .login-container-right {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        .show-qr-code-state {
+          width: 128px;
+          height: 128px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba($color: #fff, $alpha: 0.9);
+          position: absolute;
+          top: 50%;
+          transform: translateY(-40%);
+          font-size: 12px;
+          .btn {
+            background-color: #81dd81;
+            border: none;
+          }
+        }
+        .qrImg {
+          width: 128px;
+          height: 128px;
+        }
+        p {
+          font-size: 12px;
+          color: #999;
+          a {
+            color: #0c73c2;
+            text-decoration: none;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+    .login-footer {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      .btn {
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

@@ -4,9 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { Avatar, Badge, Dropdown, Input, Menu } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsShowLogin } from '@/store/action/login';
+import CommonLogin from '../common-login';
 export default function Header() {
+  const disPatch = useDispatch();
   const [searchSongList, setSearchSongList] = useState([]);
-  const [isLogin, setIsLogin] = useState(true);
+  const { isLogin } = useSelector(state => state.loginReducer);
   const GroupItem = ({ item, index }) => {
     return index > 2 ? (
       <a href={item.link} className='header-item'>
@@ -106,13 +110,15 @@ export default function Header() {
           <Dropdown overlay={profileDownMenu}>
             <div
               className='login'
-              // onClick={() => !isLogin && dispatch(changeIsVisible(true))}
+              onClick={() => !isLogin && disPatch(setIsShowLogin(true))}
             >
               {isLogin ? <ShowProfileContent /> : '登录'}
             </div>
           </Dropdown>
         </div>
       </div>
+      {/* <div className='red-line'></div> */}
+      {<CommonLogin />}
     </header>
   );
 }
