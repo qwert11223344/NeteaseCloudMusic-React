@@ -7,6 +7,7 @@ import Home from './views';
 import { Provider } from 'react-redux';
 import store from './store';
 import WNBackTop from './components/backTop';
+import PlayBar from './components/play-bar';
 function App() {
   return (
     <Provider store={store}>
@@ -14,6 +15,7 @@ function App() {
         <Header />
         {/* 容器 */}
         <Home />
+        <PlayBar />
         <Footer />
         <WNBackTop />
       </Router>

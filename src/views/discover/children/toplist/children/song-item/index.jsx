@@ -2,6 +2,7 @@ import { getImageSize } from '@/utils';
 import { NavLink } from 'react-router-dom';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import styles from './index.module.scss';
+import { useAddPlayList } from '@/hooks/music';
 export default function SongItem({
   index,
   songId,
@@ -10,6 +11,7 @@ export default function SongItem({
   dr,
   coverPic
 }) {
+  const addPlaylist = useAddPlayList(songId);
   return (
     <div className={styles.songItemContainer}>
       <div className='song-wrapper'>
@@ -40,6 +42,10 @@ export default function SongItem({
                 href='#/discover/toplist'
                 title='添加到播放器'
                 className='btn add'
+                onClick={e => {
+                  e.preventDefault();
+                  addPlaylist();
+                }}
               >
                 {''}
               </a>

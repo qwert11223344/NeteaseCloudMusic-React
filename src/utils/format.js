@@ -13,7 +13,7 @@ export function getCount(count) {
   }
 }
 export function getImageSize(url, size) {
-  return `${url}?param=${size}x${size}`;
+  return `${url}?param=${size}y${size}`;
 }
 
 export function formatDate(time, fmt) {
@@ -52,4 +52,8 @@ export function formatMinuteSecond(time) {
 }
 export function formatMonthDay(time) {
   return formatDate(time, 'MM月dd日');
+}
+
+export function getRandom(end) {
+  return Math.floor(Math.random() * end);
 }

@@ -1,6 +1,8 @@
+import { useAddPlayList } from '@/hooks/music';
 import { getImageSize } from '@/utils';
 import styles from './index.module.scss';
 export default function TopListRecommend({ item }) {
+  const addPlaylist = useAddPlayList(item.id);
   return (
     <div className={styles.topListRecommend}>
       <div className='ranking-header'>
@@ -53,7 +55,10 @@ export default function TopListRecommend({ item }) {
                   <a
                     href='/discover/recommend'
                     className='sprite_icon2 btn addto'
-                    // onClick={e => addPlaylist(e, item.id)}
+                    onClick={e => {
+                      e.preventDefault();
+                      addPlaylist(item.id);
+                    }}
                   >
                     {item.name}
                   </a>
