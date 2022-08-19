@@ -1,11 +1,13 @@
 import songApi from '@/api/songApi';
 import {
+  asyncGetLyric,
+  changeCurrentLyricIndex,
   changeCurrentSong,
   changeIsFirstLoad,
   changePlaySequence
 } from '@/store/action/playbar';
 import { formatDate, getImageSize, getRandom } from '@/utils';
-import { Slider } from 'antd';
+import { message, Slider } from 'antd';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -26,10 +28,11 @@ export default function PlayBar() {
   const [progress, setProgress] = useState(0); //播放进度
   const [currentTime, setCurrentTime] = useState(0); //当前播放时间
   const [alreadyPlay, setAlreadyPlay] = useState([]); //已经播放的歌曲,用于随机播放时避免重复
-  let { playList, playSequence, currentSong, isFirstLoad } = useSelector(
+  let { playList, playSequence, currentSong, isFirstLoad, lyric } = useSelector(
     state => state.playBarReducer,
     shallowEqual
   );
+  //获取播放列表的歌曲信息
   useEffect(() => {
     const getPlayListInfo = async ids => {
       const { songs } = await songApi.getSongDetail(playList);
@@ -76,6 +79,8 @@ export default function PlayBar() {
       } = await songApi.getSongUrl(currentSong.id);
       audioRef.current.src = url;
       setIsPlaying(true + Math.random());
+      disPatch(asyncGetLyric(currentSong.id));
+      disPatch(changeCurrentLyricIndex(0));
       disPatch(changeIsFirstLoad(false));
     };
 
@@ -116,11 +121,18 @@ export default function PlayBar() {
     [playListInfo, playSequence, currentSong, disPatch, alreadyPlay]
   );
   //歌曲播放处理进度条
-  const timeUpdate = e => {
-    let currentTime = e.target.currentTime;
-    setCurrentTime(currentTime * 1000);
-    setProgress(((currentTime * 1000) / currentSong.dt) * 100);
-  };
+  const timeUpdate = useCallback(
+    e => {
+      let currentTime = e.target.currentTime;
+      setCurrentTime(currentTime * 1000);
+      setProgress(((currentTime * 1000) / currentSong.dt) * 100);
+      const index = lyric.findIndex(l => l.beginTime > currentTime * 1000);
+      index === -1
+        ? disPatch(changeCurrentLyricIndex(lyric.length))
+        : disPatch(changeCurrentLyricIndex(index - 1));
+    },
+    [disPatch, lyric, currentSong]
+  );
   //歌曲播放完成
   const timeEnd = useCallback(() => {
     if (playSequence === 2) {
@@ -208,7 +220,11 @@ export default function PlayBar() {
 
         <div className='operator'>
           <div className='left'>
-            <div className='btn' title='画中画歌词'></div>
+            <div
+              className='btn'
+              title='画中画歌词'
+              onClick={() => message.info('以后会有的')}
+            ></div>
             <div className='btn sprite_player' title='收藏'></div>
             <div className='btn sprite_player' title='分享'></div>
           </div>

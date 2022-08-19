@@ -1,8 +1,9 @@
 import localKey from '@/common/localStorageKey';
+import Lyric from '@/components/common-lyric';
 import { changePlayList } from '@/store/action/playbar';
 import localCache from '@/utils/localStorage';
 import { ClearOutlined, CloseOutlined, HeartOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import PlayListItem from '../playlist-item';
 import styles from './index.module.scss';
 export default function PLayBarList({
@@ -11,7 +12,10 @@ export default function PLayBarList({
   playListInfo
 }) {
   const disPatch = useDispatch();
-  const { playList, currentSong } = useSelector(state => state.playBarReducer);
+  const { playList, currentSong } = useSelector(
+    state => state.playBarReducer,
+    shallowEqual
+  );
 
   const clearAllPlaylist = e => {
     e.preventDefault();
@@ -73,7 +77,7 @@ export default function PLayBarList({
           </div>
         </div>
         <div className='playlist-header-right'>
-          <div className='song-name'>晴天</div>
+          <div className='song-name'>{currentSong.name}</div>
           <div
             className='close-window'
             onClick={() => changeShowPlayList(false)}
@@ -86,19 +90,9 @@ export default function PLayBarList({
         <div className='main-playlist'>
           {playList.length ? <HasLength /> : <NoLength />}
         </div>
+        <div className='main-line'></div>
+        <Lyric />
       </div>
     </div>
   );
 }
-
-//最左侧那个点击的时候去获取底板id，然后存在父组件中
-
-//left
-//点击添加的时候，数据传递到父组件中由父组件添加
-
-//父组件
-//在拿到数据后，创建一个对象，最后加上当前的底板id作为标识，然后使用一个计算属性，来计算中间组件，也就是不同的底板需要的数据
-//就用所有组件数据.filter()找到底板id为当前底板id的
-
-//底板组件
-//父组件已经把需要的数据通过计算属性计算好了，直接使用
