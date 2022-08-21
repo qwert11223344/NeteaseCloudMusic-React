@@ -1,8 +1,55 @@
-import { useAddPlayList } from '@/hooks/music';
+import { useAddPlayList, usePlayMusic } from '@/hooks/music';
+import { setIsShowLogin } from '@/store/action/login';
 import { getImageSize } from '@/utils';
+import { message } from 'antd';
+import { useCallback } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function TopListRecommend({ item }) {
-  const addPlaylist = useAddPlayList(item.id);
+  const addPlaylist = useAddPlayList();
+  const { currentSong } = useSelector(
+    state => state.playBarReducer,
+    shallowEqual
+  );
+  const { isLogin } = useSelector(state => state.loginReducer, shallowEqual);
+  const history = useHistory();
+  const disPatch = useDispatch();
+  const play = usePlayMusic();
+  //单机每一项
+  const clickSongItem = useCallback(
+    (e, item) => {
+      e.preventDefault();
+      //点击后更新播放列表，更新当前音乐
+      // disPatch(changeIsFirstLoad(true));
+      // disPatch(changeCurrentSong(item));
+      // addPlaylist(item.id);
+      // resetMusic(item);
+      history.push(`/song?id=${item.id}`);
+    },
+    [history]
+  );
+
+  //播放
+  const playMusic = useCallback(
+    (e, item) => {
+      e.preventDefault();
+      // disPatch(changeIsFirstLoad(true));
+      // disPatch(changeCurrentSong(item));
+      // addPlaylist(item.id);
+      play(item);
+    },
+    [play]
+  );
+
+  //收藏歌曲
+  const collectSong = useCallback(
+    e => {
+      e.preventDefault();
+      isLogin ? message.info('以后会有的') : disPatch(setIsShowLogin(true));
+    },
+    [isLogin, disPatch]
+  );
   return (
     <div className={styles.topListRecommend}>
       <div className='ranking-header'>
@@ -38,9 +85,9 @@ export default function TopListRecommend({ item }) {
               <div key={item.id} className='list-item'>
                 <div className='number'>{index + 1}</div>
                 <a
-                  href='/play'
+                  href={`/#/song?id=${item.id}`}
                   className='song-name text-nowrap'
-                  // onClick={e => playMusic(e, item)}
+                  onClick={(e, id) => clickSongItem(e, item)}
                 >
                   {item.name}
                 </a>
@@ -48,7 +95,7 @@ export default function TopListRecommend({ item }) {
                   <a
                     href='/discover/recommend'
                     className='sprite_02 btn play'
-                    // onClick={e => playMusic(e, item)}
+                    onClick={e => playMusic(e, item)}
                   >
                     {item.name}
                   </a>
@@ -57,12 +104,16 @@ export default function TopListRecommend({ item }) {
                     className='sprite_icon2 btn addto'
                     onClick={e => {
                       e.preventDefault();
-                      addPlaylist(item.id);
+                      addPlaylist();
                     }}
                   >
                     {item.name}
                   </a>
-                  <a href='/play' className='no-link sprite_02 btn favourite'>
+                  <a
+                    href='/play'
+                    className='sprite_02 btn favourite'
+                    onClick={collectSong}
+                  >
                     {item.name}
                   </a>
                 </div>

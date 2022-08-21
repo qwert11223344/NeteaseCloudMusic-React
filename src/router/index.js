@@ -4,6 +4,7 @@ const Discover = React.lazy(() => import('@/views/discover'));
 const Friend = React.lazy(() => import('@/views/friend'));
 const Mine = React.lazy(() => import('@/views/mine'));
 const Error = React.lazy(() => import('@/views/error'));
+const SongDetail = React.lazy(() => import('@/views/song'));
 
 const Recommend = React.lazy(() =>
   import('@/views/discover/children/recommend')
@@ -61,6 +62,10 @@ const routes = [
   {
     path: '/friend',
     component: Friend
+  },
+  {
+    path: '/song',
+    component: SongDetail
   },
   {
     component: Error

@@ -12,7 +12,7 @@ export default function PlayListItem({ song, isActive }) {
   const disPatch = useDispatch();
   const { name, dt, ar, id } = song;
   const artist = ar.map(a => a.name).join('/');
-  const delPlayListById = useDelPlayListById(id);
+  const delPlayListById = useDelPlayListById();
 
   const setCurrentSong = e => {
     disPatch(changeCurrentSong(song));

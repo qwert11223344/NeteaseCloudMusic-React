@@ -210,10 +210,12 @@ export default function PlayBar() {
             />
           </div>
           <div className='song-time'>
-            <span className='now-time'>{formatDate(currentTime, 'mm:ss')}</span>
+            <span className='now-time'>
+              {formatDate(currentTime, 'mm:ss') ?? '00:00'}
+            </span>
             <span className='total-time'>
               {' '}
-              / {formatDate(currentSong.dt, 'mm:ss')}
+              / {formatDate(currentSong.dt, 'mm:ss') ?? '00:00'}
             </span>
           </div>
         </div>
@@ -225,8 +227,16 @@ export default function PlayBar() {
               title='画中画歌词'
               onClick={() => message.info('以后会有的')}
             ></div>
-            <div className='btn sprite_player' title='收藏'></div>
-            <div className='btn sprite_player' title='分享'></div>
+            <div
+              className='btn sprite_player'
+              title='收藏'
+              onClick={() => message.info('以后会有的')}
+            ></div>
+            <div
+              className='btn sprite_player'
+              title='分享'
+              onClick={() => message.info('以后会有的')}
+            ></div>
           </div>
           <div className='right sprite_player'>
             <div

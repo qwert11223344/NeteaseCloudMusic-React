@@ -1,3 +1,5 @@
+import localKey from '@/common/localStorageKey';
+
 const localCache = {
   set(key, data, expire?) {
     let cache = { data };

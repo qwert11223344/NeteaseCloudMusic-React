@@ -10,9 +10,6 @@ export default function Lyric() {
   );
   const lyricRef = useRef('');
   useEffect(() => {
-    console.log(lyric);
-  }, [lyric]);
-  useEffect(() => {
     if (currentLyricIndex > 0 && currentLyricIndex < 4) return;
     scrollTo(lyricRef.current, (currentLyricIndex - 4) * 32, 300);
   }, [currentLyricIndex]);

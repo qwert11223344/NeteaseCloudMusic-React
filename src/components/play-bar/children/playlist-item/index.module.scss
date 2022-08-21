@@ -7,7 +7,7 @@
       height: 100%;
       display: flex;
       align-items: center;
-
+      position: relative;
       cursor: pointer;
       justify-content: space-around;
       &:hover {
@@ -26,7 +26,7 @@
         &.active::before {
           content: '';
           position: absolute;
-          left: 5px;
+          left: 3px;
           width: 15px;
           height: 28px;
           background: url('/assets/img/playlist.png') no-repeat 0 9999px;

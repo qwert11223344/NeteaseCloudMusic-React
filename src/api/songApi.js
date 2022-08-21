@@ -28,6 +28,31 @@ class songApi {
       }
     });
   }
+  //歌曲下载地址
+  getSongDownloadUrl(id) {
+    return http.request({
+      url: '/song/download/url',
+      params: { id }
+    });
+  }
+  //相似歌单
+  getPlayerHasSong(id) {
+    return http.request({
+      url: '/simi/playlist',
+      params: {
+        id
+      }
+    });
+  }
+  //相似歌曲
+  getSimilarSong(id) {
+    return http.request({
+      url: '/simi/song',
+      params: {
+        id
+      }
+    });
+  }
 }
 
 export default new songApi();

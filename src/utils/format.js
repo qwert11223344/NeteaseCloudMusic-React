@@ -16,7 +16,12 @@ export function getImageSize(url, size) {
   return `${url}?param=${size}y${size}`;
 }
 
+export function getSongUrl(id) {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+}
+
 export function formatDate(time, fmt) {
+  if (!time) return;
   let date = new Date(time);
 
   if (/(y+)/.test(fmt)) {

@@ -20,7 +20,7 @@ export default function CommonHeaderRcm({
             {title}
           </a>
         </h2>
-        {left}
+        <span> {left}</span>
         <ul className='keywords'>
           {keywords.map(item => {
             return (

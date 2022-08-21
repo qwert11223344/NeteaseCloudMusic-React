@@ -4,21 +4,21 @@ import { PlayCircleOutlined } from '@ant-design/icons';
 import styles from './index.module.scss';
 import { useAddPlayList } from '@/hooks/music';
 export default function SongItem({
-  index,
+  index = '',
   songId,
   songName,
   artist,
-  dr,
-  coverPic
+  dr = 0,
+  coverPic = ''
 }) {
-  const addPlaylist = useAddPlayList(songId);
+  const addPlaylist = useAddPlayList();
   return (
     <div className={styles.songItemContainer}>
       <div className='song-wrapper'>
         <div className='song-item rank-count'>{index}</div>
         {coverPic && (
           <NavLink
-            to='/discover/song'
+            to='/song'
             className='song-item'
             // onClick={e => playMusic(e, true)}
           >
@@ -44,7 +44,7 @@ export default function SongItem({
                 className='btn add'
                 onClick={e => {
                   e.preventDefault();
-                  addPlaylist();
+                  addPlaylist(songId);
                 }}
               >
                 {''}

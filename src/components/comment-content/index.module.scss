@@ -1,0 +1,45 @@
+.commentContent {
+  :global {
+    .header-comment {
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 30px;
+      border-bottom: 1px solid #cfcfcf;
+    }
+    .ant-comment {
+      &:first-child,
+      &:last-child {
+        border: none;
+      }
+      img {
+        border-radius: 0;
+      }
+      border-bottom: 1px solid #cfcfcf;
+      .ant-comment-inner {
+        padding-bottom: 0;
+        .ant-comment-content {
+          .author-name {
+            color: #0c73c2;
+          }
+          .ant-comment-content-detail {
+            font-size: 12px;
+          }
+          .ant-comment-actions {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+    .ant-comment-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -10px;
+    }
+    .comment-like {
+      &:hover {
+        border-bottom: solid 1px #ccc;
+      }
+    }
+  }
+}
