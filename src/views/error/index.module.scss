@@ -1,0 +1,22 @@
+.notFound {
+  :global {
+    .not-found-content {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      .show-404-img {
+        width: 270px;
+        height: 120px;
+        background: url('/assets/img/logo.png');
+        background-position: 0 -400px;
+      }
+      .show-404-text {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    }
+  }
+}
