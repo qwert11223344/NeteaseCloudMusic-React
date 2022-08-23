@@ -2,7 +2,7 @@ import types from '../action/toplist/actionTypes';
 const defaultState = {
   topList: [],
   currentTopListInfo: {},
-  currentTopListIndex: 0
+  currentTopListIndex: 19723756
 };
 
 export default function topListReducer(state = defaultState, action) {

@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import searchApi from '@/api/searchApi';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { changeCurrentSong } from '@/store/action/playbar';
+import { useRef } from 'react';
 export default function Header() {
   const disPatch = useDispatch();
   const { isLogin } = useSelector(state => state.loginReducer);
@@ -34,7 +34,6 @@ export default function Header() {
 
   const SearchInput = () => {
     const history = useHistory();
-    const disPatch = useDispatch();
     const [searchKeyWords, setSearchKeyWords] = useState('');
     const [searchSuggest, setSearchSuggest] = useState({});
 
@@ -43,7 +42,6 @@ export default function Header() {
         const {
           result: { albums, artists, songs, playlists }
         } = await searchApi.getSearchSuggest(searchKeyWords);
-
         setSearchSuggest({ albums, artists, songs, playlists });
       };
       searchKeyWords && asyncGetSearchSuggest();
@@ -52,10 +50,16 @@ export default function Header() {
     const searchSong = useCallback(
       id => {
         history.push(`song?id=${id}`);
-        disPatch(changeCurrentSong());
       },
-      [history, disPatch]
+      [history]
     );
+    const pressEnter = useCallback(() => {
+      searchKeyWords &&
+        (function () {
+          history.push(`/search?key=${searchKeyWords}`);
+          setSearchKeyWords('');
+        })();
+    }, [searchKeyWords, history]);
     return (
       <div className='search-wrapper'>
         <Input
@@ -64,6 +68,7 @@ export default function Header() {
           placeholder='音乐/视频/电台/用户'
           value={searchKeyWords}
           onChange={e => setSearchKeyWords(e.target.value.trim())}
+          onPressEnter={pressEnter}
         />
         <div
           className='down-slider'

@@ -13,7 +13,7 @@ export default function TopListItem({ topList }) {
   const disPatch = useDispatch();
   const { currentTopListIndex } = useSelector(state => state.topListReducer);
   useEffect(() => {
-    const toplistId = +location.search.split('=').pop();
+    const toplistId = +location.search.split('=').pop() || 19723756;
     toplistId
       ? disPatch(asyncGetCurrentTopListInfo(toplistId))
       : disPatch(asyncGetCurrentTopListInfo());

@@ -1,0 +1,22 @@
+.artistCover {
+  display: flex;
+  width: 150px;
+  height: 190px;
+  :global {
+    .artist-cover-wrapper {
+      display: flex;
+      flex-direction: column;
+      img {
+        box-sizing: border-box;
+        outline: 1px solid #ccc;
+      }
+      .artist-name {
+        margin-top: 10px;
+        width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}

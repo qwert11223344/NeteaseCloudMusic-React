@@ -1,0 +1,21 @@
+.searchSong {
+  :global {
+    .search-song-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      overflow: hidden;
+
+      &:nth-child(even) .song-wrapper {
+        background-color: #fff;
+      }
+      &:hover .song-wrapper {
+        background-color: #ddd;
+      }
+      .song-wrapper {
+        width: 100%;
+      }
+    }
+  }
+}

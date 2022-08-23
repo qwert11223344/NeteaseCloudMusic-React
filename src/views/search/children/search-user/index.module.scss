@@ -1,0 +1,52 @@
+.searchUser {
+  padding-top: 20px;
+  :global {
+    .user-item {
+      height: 60px;
+      width: 100%;
+      display: flex;
+      cursor: pointer;
+      &:nth-child(even) {
+        background-color: #f7f7f7;
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+      .info {
+        padding-left: 20px;
+        display: flex;
+        flex: 5;
+        img {
+          width: 50px;
+        }
+        .user-info {
+          padding-left: 20px;
+          display: inline-flex;
+          flex-direction: column;
+          .user-name {
+            color: #0c73c2;
+            font-size: 14px;
+            .gender {
+              margin-left: 5px;
+              display: inline-block;
+              width: 15px;
+              height: 15px;
+            }
+          }
+          .user-desc {
+            color: #999;
+          }
+        }
+      }
+      .right {
+        flex: 3;
+        color: #999;
+        display: flex;
+        align-items: center;
+        span {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

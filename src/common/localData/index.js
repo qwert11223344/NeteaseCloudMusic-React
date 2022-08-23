@@ -36,35 +36,36 @@ export const headerLinks = [
 export const searchCategories = [
   {
     title: '单曲',
-    link: '/search/single?type=1'
+    link: '/search?type=1'
   },
   {
     title: '歌手',
-    link: '/search/singer?type=100'
+    link: '/search?type=100'
   },
   {
     title: '专辑',
-    link: '/search/album?type=11'
+    link: '/search?type=10'
   },
   {
     title: '视频',
-    link: '/search/video?type=12'
+    link: '/search?type=1014'
   },
-  {
-    title: '歌词',
-    link: '/search/artist?type=13'
-  },
+
   {
     title: '歌单',
-    link: '/search/songs?type=14'
+    link: '/search?type=1000'
   },
   {
     title: '主播电台',
-    link: '/search/dj?type=15'
+    link: '/search?type=1009'
   },
   {
     title: '用户',
-    link: '/search/user?type=16'
+    link: '/search?type=1002'
+  },
+  {
+    title: '歌词',
+    link: '/search?type=1006'
   }
 ];
 export const loginMenu = [

@@ -12,8 +12,9 @@ export function getCount(count) {
     return Math.floor(count / 10000000) / 10 + '亿';
   }
 }
-export function getImageSize(url, size) {
-  return `${url}?param=${size}y${size}`;
+export function getImageSize(url, width, height) {
+  height = height ?? width;
+  return `${url}?param=${width}y${height}`;
 }
 
 export function getSongUrl(id) {

@@ -1,0 +1,49 @@
+.searchPlaylist {
+  :global {
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      padding: 20px 0 10px 0;
+      // height: 60px;
+      cursor: pointer;
+      &:nth-child(even) {
+        background-color: #f7f7f7;
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+      .info {
+        flex: 2;
+        padding-left: 10px;
+        img {
+          margin-right: 20px;
+        }
+      }
+      .count-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        .track-count {
+          color: #999;
+          padding-right: 10px;
+        }
+        .creator-name {
+          display: inline-block;
+          padding-left: 10px;
+          width: 100px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      .collect-wrapper {
+        flex: 1;
+        display: flex;
+        .collect-count,
+        .play-count {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

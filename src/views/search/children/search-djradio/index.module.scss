@@ -1,0 +1,22 @@
+.searchDjradio {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  :global {
+    .dj-item {
+      display: inline-flex;
+      flex-direction: column;
+      img {
+        width: 150px;
+      }
+      .title {
+        font-size: 14px;
+        width: 150px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}
