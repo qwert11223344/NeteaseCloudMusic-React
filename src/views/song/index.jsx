@@ -1,18 +1,32 @@
 import songApi from '@/api/songApi';
 import { useAddPlayList, usePlayMusic } from '@/hooks/music';
+import { changeCurrentSong } from '@/store/action/playbar';
 import { getImageSize } from '@/utils';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import SongComment from './children/song-comment';
 import SongInfo from './children/song-info';
 import styles from './index.module.scss';
 export default function SongDetail() {
   const [playerHasSong, setPlayHasSong] = useState('');
   const [similarSong, setSimilarSong] = useState('');
-  const { currentSong } = useSelector(state => state.playBarReducer);
+  const [currentSong, setCurrentSong] = useState({});
+  // const { currentSong } = useSelector(state => state.playBarReducer);
   const playMusic = usePlayMusic();
   const addPlaylist = useAddPlayList();
+  const location = useLocation();
+  const disPatch = useDispatch();
+  useEffect(() => {
+    const id = +location.search.split('=').pop();
+    const asyncGetSongDetail = async () => {
+      const { songs } = await songApi.getSongDetail(id);
+      // disPatch(changeCurrentSong(songs[0]));
+      setCurrentSong(songs[0]);
+    };
+    asyncGetSongDetail();
+  }, [location, disPatch]);
   useEffect(() => {
     const asyncGetSimilar = async id => {
       const { songs } = await songApi.getSimilarSong(id);
@@ -26,8 +40,8 @@ export default function SongDetail() {
     <div className={styles.songDetail}>
       <div className='song-content w980'>
         <div className='song-left'>
-          <SongInfo />
-          <SongComment />
+          <SongInfo currentSong={currentSong} />
+          <SongComment currentSong={currentSong} />
         </div>
         <div className='song-right'>
           {/* 包含该歌曲的歌单 */}
@@ -58,12 +72,19 @@ export default function SongDetail() {
               similarSong.map(i => (
                 <div key={i.id} className='similar-song-item'>
                   <div className='similar-song-item-left'>
-                    <a className='songName' href={`/#/song?id=${i.id}`}>
+                    <a
+                      className='songName'
+                      href={`#/song?id=${i.id}`}
+                      // onClick={() => history.push(`#song?id=${i.id}`)}
+                    >
                       {i.name}
                     </a>
                     <a
                       className='artistName'
                       href={`/#/artists?id=${i.artists[0].id}`}
+                      // onClick={() =>
+                      //   history.push(`/artists?id=${i.artists[0].id}`)
+                      // }
                     >
                       {i.artists[0].name}
                     </a>

@@ -38,15 +38,46 @@ export default function PlayBar() {
       const { songs } = await songApi.getSongDetail(playList);
       setPlayListInfo(songs);
       // songs.length && disPatch(changeCurrentSong(songs[0]));
+      // 此处可优化，当播放列表发生变化时会把所有数据重新请求一遍，可以优化为只请求新增的然后把新数据添加到之前的数据中
     };
-    getPlayListInfo();
+    playList.length && getPlayListInfo();
   }, [playList, disPatch]);
+  //第一次加载音乐路径
+  useEffect(() => {
+    const getMusicUrl = async () => {
+      const {
+        data: [{ url }]
+      } = await songApi.getSongUrl(currentSong.id);
+      audioRef.current.src = url;
+      // setIsPlaying(true + Math.random());
+      disPatch(asyncGetLyric(currentSong.id));
+      disPatch(changeCurrentLyricIndex(0));
+      disPatch(changeIsFirstLoad(false));
+    };
+
+    isFirstLoad && currentSong.id && getMusicUrl();
+  }, [disPatch, isFirstLoad, currentSong]);
+
+  //播放音乐
+  useEffect(() => {
+    isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    //播放过的音乐存起来
+    isPlaying &&
+      !alreadyPlay.includes(currentSong.id) &&
+      setAlreadyPlay([...alreadyPlay, currentSong.id]);
+    if (playList.length && alreadyPlay.length === playList.length)
+      setAlreadyPlay([]);
+  }, [isPlaying, currentSong, alreadyPlay, playList]);
+  const playMusic = useCallback(() => {
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
+
   //设置歌曲播放顺序
-  const changeSequence = () => {
+  const changeSequence = useCallback(() => {
     let newPlaySequence = playSequence + 1;
-    if (newPlaySequence > 2) playSequence = newPlaySequence = 0;
+    if (newPlaySequence > 2) newPlaySequence = 0;
     disPatch(changePlaySequence(newPlaySequence));
-  };
+  }, [disPatch, playSequence]);
   //显示播放列表
   const changeShowPlayList = useCallback(() => {
     setIsShowPlayList(!isShowPlayList);
@@ -71,33 +102,7 @@ export default function PlayBar() {
     },
     [currentSong]
   );
-  //第一次加载音乐路径
-  useEffect(() => {
-    const getMusicUrl = async () => {
-      const {
-        data: [{ url }]
-      } = await songApi.getSongUrl(currentSong.id);
-      audioRef.current.src = url;
-      setIsPlaying(true + Math.random());
-      disPatch(asyncGetLyric(currentSong.id));
-      disPatch(changeCurrentLyricIndex(0));
-      disPatch(changeIsFirstLoad(false));
-    };
 
-    isFirstLoad && currentSong.id && getMusicUrl();
-  }, [disPatch, isFirstLoad, currentSong]);
-  //播放音乐
-  useEffect(() => {
-    isPlaying ? audioRef.current.play() : audioRef.current.pause();
-    //播放过的音乐存起来
-    isPlaying &&
-      !alreadyPlay.includes(currentSong.id) &&
-      setAlreadyPlay([...alreadyPlay, currentSong.id]);
-    if (alreadyPlay.length === playList.length) setAlreadyPlay([]);
-  }, [isPlaying, currentSong, alreadyPlay, playList]);
-  const playMusic = useCallback(() => {
-    setIsPlaying(!isPlaying);
-  }, [isPlaying]);
   // 切换音乐
   const changeSong = useCallback(
     val => {
@@ -126,6 +131,10 @@ export default function PlayBar() {
       let currentTime = e.target.currentTime;
       setCurrentTime(currentTime * 1000);
       setProgress(((currentTime * 1000) / currentSong.dt) * 100);
+
+      //其他地方播放音乐时，用来处理播放按钮
+      if (currentTime > 0.1 && currentTime < 0.5) setIsPlaying(true);
+
       const index = lyric.findIndex(l => l.beginTime > currentTime * 1000);
       index === -1
         ? disPatch(changeCurrentLyricIndex(lyric.length))
@@ -195,7 +204,7 @@ export default function PlayBar() {
           </NavLink>
           <div className='play-detail'>
             <div className='song-info'>
-              <NavLink to='/discover/song' className='song-name'>
+              <NavLink to={`/song?id=${currentSong.id}`} className='song-name'>
                 {currentSong.name}
               </NavLink>
               <a href='/author' className='no-link singer-name'>

@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function TopListRecommend({ item }) {
   const addPlaylist = useAddPlayList();
-  const { currentSong } = useSelector(
-    state => state.playBarReducer,
-    shallowEqual
-  );
+  // const { currentSong } = useSelector(
+  //   state => state.playBarReducer,
+  //   shallowEqual
+  // );
   const { isLogin } = useSelector(state => state.loginReducer, shallowEqual);
   const history = useHistory();
   const disPatch = useDispatch();
@@ -37,7 +37,8 @@ export default function TopListRecommend({ item }) {
       // disPatch(changeIsFirstLoad(true));
       // disPatch(changeCurrentSong(item));
       // addPlaylist(item.id);
-      play(item);
+      const audio = document.querySelector('#audio');
+      play(audio, item);
     },
     [play]
   );
@@ -104,7 +105,7 @@ export default function TopListRecommend({ item }) {
                     className='sprite_icon2 btn addto'
                     onClick={e => {
                       e.preventDefault();
-                      addPlaylist();
+                      addPlaylist(item.id);
                     }}
                   >
                     {item.name}
@@ -122,7 +123,7 @@ export default function TopListRecommend({ item }) {
           })}
       </div>
       <div className='ranking-footer'>
-        <a href='/all' className='show-all'>
+        <a href={`#/discover/toplist?id=${item.id}`} className='show-all'>
           查看全部&gt;
         </a>
       </div>

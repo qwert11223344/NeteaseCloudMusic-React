@@ -52,6 +52,7 @@ export default function TopListMain() {
                 }`}
                 songId={i.id}
                 artist={i.ar.map(ci => ci.name).join('/')}
+                i={i}
               />
             ))}
         </div>

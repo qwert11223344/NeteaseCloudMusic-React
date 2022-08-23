@@ -6,7 +6,7 @@ class songApi {
     return http.request({
       url: '/song/detail',
       params: {
-        ids: ids.join(',')
+        ids: Array.isArray(ids) ? ids.join(',') : ids
       }
     });
   }

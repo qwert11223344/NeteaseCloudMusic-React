@@ -5,13 +5,10 @@ import { Collapse, message } from 'antd';
 import { useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import styles from './index.module.scss';
-export default function SongInfo() {
+export default function SongInfo({ currentSong }) {
   const { Panel } = Collapse;
   const disPatch = useDispatch();
-  const { currentSong, lyric } = useSelector(
-    state => state.playBarReducer,
-    shallowEqual
-  );
+  const { lyric } = useSelector(state => state.playBarReducer, shallowEqual);
   const { totalComment } = useSelector(state => state.commentReducer);
   const { isLogin } = useSelector(state => state.loginReducer, shallowEqual);
   const playMusic = usePlayMusic();
@@ -54,7 +51,9 @@ export default function SongInfo() {
         <div className='controls'>
           <div
             className='sprite_button play pointer'
-            onClick={() => playMusic(currentSong)}
+            onClick={() =>
+              playMusic(document.querySelector('#audio'), currentSong)
+            }
           >
             <i className='sprite_button inner'>
               <em className='sprite_button play-icon'></em>

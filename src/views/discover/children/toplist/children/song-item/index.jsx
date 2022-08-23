@@ -2,23 +2,30 @@ import { getImageSize } from '@/utils';
 import { NavLink } from 'react-router-dom';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import styles from './index.module.scss';
-import { useAddPlayList } from '@/hooks/music';
+import { useAddPlayList, usePlayMusic } from '@/hooks/music';
+import { useCallback } from 'react';
 export default function SongItem({
   index = '',
   songId,
   songName,
   artist,
   dr = 0,
-  coverPic = ''
+  coverPic = '',
+  i
 }) {
   const addPlaylist = useAddPlayList();
+  const play = usePlayMusic();
+  const playMusic = useCallback(() => {
+    const audio = document.querySelector('#audio');
+    play(audio, i);
+  }, [play, i]);
   return (
     <div className={styles.songItemContainer}>
       <div className='song-wrapper'>
         <div className='song-item rank-count'>{index}</div>
         {coverPic && (
           <NavLink
-            to='/song'
+            to={`/song?id=${songId}`}
             className='song-item'
             // onClick={e => playMusic(e, true)}
           >
@@ -27,11 +34,8 @@ export default function SongItem({
         )}
         <div className='song-item song-info'>
           <div className='left-info' style={{ width: coverPic ? 258 : 328 }}>
-            <PlayCircleOutlined
-              className='font-active'
-              // onClick={e => playMusic(e)}
-            />
-            <a href='/play' className='text-nowrap'>
+            <PlayCircleOutlined className='font-active' onClick={playMusic} />
+            <a href={`#/song?id=${songId}`} className='text-nowrap'>
               {songName}
             </a>
           </div>
@@ -39,7 +43,7 @@ export default function SongItem({
             <div className='song-item duration'>{dr}</div>
             <div className='btn-group'>
               <a
-                href='#/discover/toplist'
+                href='/discover/toplist'
                 title='添加到播放器'
                 className='btn add'
                 onClick={e => {

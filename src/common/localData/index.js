@@ -33,7 +33,40 @@ export const headerLinks = [
     link: 'https://music.163.com/#/download'
   }
 ];
-
+export const searchCategories = [
+  {
+    title: '单曲',
+    link: '/search/single?type=1'
+  },
+  {
+    title: '歌手',
+    link: '/search/singer?type=100'
+  },
+  {
+    title: '专辑',
+    link: '/search/album?type=11'
+  },
+  {
+    title: '视频',
+    link: '/search/video?type=12'
+  },
+  {
+    title: '歌词',
+    link: '/search/artist?type=13'
+  },
+  {
+    title: '歌单',
+    link: '/search/songs?type=14'
+  },
+  {
+    title: '主播电台',
+    link: '/search/dj?type=15'
+  },
+  {
+    title: '用户',
+    link: '/search/user?type=16'
+  }
+];
 export const loginMenu = [
   {
     icon: <UserOutlined />,
@@ -79,6 +112,7 @@ export const loginMenu = [
     key: 7
   }
 ];
+
 export const footerLinks = [
   {
     title: '服务条款',

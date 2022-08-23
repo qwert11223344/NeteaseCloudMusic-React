@@ -12,13 +12,14 @@ import { useDispatch } from 'react-redux';
 export const usePlayMusic = () => {
   const disPatch = useDispatch();
   const addPlaylist = useAddPlayList();
-  return async song => {
+  return async (audio, song) => {
     const {
       songs: [newSong]
     } = await songApi.getSongDetail([song.id]);
     disPatch(changeIsFirstLoad(true));
     disPatch(changeCurrentSong(newSong));
     addPlaylist(song.id);
+    audio.autoplay = true;
   };
 };
 

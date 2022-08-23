@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 
 export default class Axios {
@@ -46,17 +47,17 @@ export default class Axios {
         // 对响应错误做点什么
         if (error && error.response) {
           switch (error.response.status) {
-            case 400:
-              console.log('请求参数错误');
-              break;
-            case 401:
-              console.log('未授权访问');
-              break;
-            case 500:
-              console.log('服务器开小差了');
-              break;
+            // case 400:
+            //   console.log('请求参数错误');
+            //   break;
+            // case 401:
+            //   console.log('未授权访问');
+            //   break;
+            // case 500:
+            //   console.log('服务器开小差了');
+            //   break;
             default:
-              console.log('其他错误信息');
+              message.error('网络拥堵，请稍后再试哦');
           }
         }
         return Promise.reject(error);

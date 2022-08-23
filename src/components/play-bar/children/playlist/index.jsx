@@ -38,14 +38,15 @@ export default function PLayBarList({
   const HasLength = () => {
     return (
       <>
-        {playListInfo &&
-          playListInfo.map(i => (
-            <PlayListItem
-              key={i.id}
-              song={i}
-              isActive={currentSong.id === i.id ? true : false}
-            />
-          ))}
+        {playListInfo?.length
+          ? playListInfo.map(i => (
+              <PlayListItem
+                key={i.id}
+                song={i}
+                isActive={currentSong.id === i.id ? true : false}
+              />
+            ))
+          : ''}
       </>
     );
   };
@@ -61,7 +62,7 @@ export default function PLayBarList({
             <a
               href='/favorite'
               className='header-icon'
-              onClick={e => e.preventDefault()}
+              // onClick={e => e.preventDefault()}
             >
               <HeartOutlined />
               <span>收藏</span>
@@ -80,7 +81,9 @@ export default function PLayBarList({
           <div className='song-name'>{currentSong.name}</div>
           <div
             className='close-window'
-            onClick={() => changeShowPlayList(false)}
+            onClick={() => {
+              changeShowPlayList(false);
+            }}
           >
             <CloseOutlined />
           </div>

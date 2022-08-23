@@ -5,19 +5,21 @@ import {
 import { getImageSize } from '@/utils';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function TopListItem({ topList }) {
+  const location = useLocation();
   const disPatch = useDispatch();
   const { currentTopListIndex } = useSelector(state => state.topListReducer);
   useEffect(() => {
-    disPatch(asyncGetCurrentTopListInfo());
-  }, [disPatch]);
-  const clickItem = (e, index, id) => {
-    e.preventDefault();
-    disPatch(setCurrentTopListIndex(index));
-    disPatch(asyncGetCurrentTopListInfo(id));
-  };
+    const toplistId = +location.search.split('=').pop();
+    toplistId
+      ? disPatch(asyncGetCurrentTopListInfo(toplistId))
+      : disPatch(asyncGetCurrentTopListInfo());
+
+    disPatch(setCurrentTopListIndex(toplistId));
+  }, [disPatch, location]);
   return (
     <div className={styles.topListItem}>
       {topList.map((list, index) => (
@@ -26,9 +28,8 @@ export default function TopListItem({ topList }) {
             {index === 0 ? '云音乐特色榜' : index === 4 ? '全球媒体榜' : ''}
           </h3>
           <NavLink
-            className={`info ${currentTopListIndex === index ? 'bg' : ''}`}
-            onClick={e => clickItem(e, index, list.id)}
-            to={{ pathname: `/discover/songs`, search: `?id=${list.id}` }}
+            className={`info ${currentTopListIndex === list.id ? 'bg' : ''}`}
+            to={{ pathname: `/discover/toplist`, search: `?id=${list.id}` }}
           >
             <div className='image'>
               <img src={getImageSize(list.coverImgUrl, 44)} alt='' />

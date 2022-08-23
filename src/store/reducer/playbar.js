@@ -1,8 +1,9 @@
 import types from '../action/playbar/actionTypes';
 import localCache from '@/utils/localStorage';
+import localKey from '@/common/localStorageKey';
 const defaultState = {
   playSequence: 0, //0顺序播放 1随机播放 2循环播放
-  playList: localCache.get('playBarList') ?? [],
+  playList: localCache.get(localKey.PLAY_BAR_LIST) ?? [],
   currentSong: {},
   isFirstLoad: true,
   lyric: [],

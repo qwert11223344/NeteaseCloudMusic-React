@@ -122,52 +122,46 @@
             }
 
             .content {
-              display: flex;
               border-top: 1px solid rgb(183, 183, 187);
-
-              .zuo {
-                /* float: left; */
-                /* height: 100%; */
-                width: 65px;
-                /* border: 1px solid rgb(183, 183, 187); */
-                padding-top: 10px;
-                border-bottom: none;
-
-                .song {
-                  color: #ccc;
-                  margin-left: 28px;
+              .option {
+                display: flex;
+                &:nth-child(even) .main {
+                  background-color: #f1f1f1;
+                  border: 1px solid #ccc;
+                  border-right: none;
                 }
-              }
+                .option-name {
+                  width: 53px;
+                  text-align: center;
+                  color: #333;
+                }
+                .main {
+                  display: inline-block;
+                  font-size: 13px;
+                  line-height: 28px;
+                  border-left: 1px solid #bebebe;
 
-              .main {
-                display: inline-block;
-                font-size: 13px;
-                line-height: 28px;
-
-                .song-item {
-                  white-space: nowrap;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  width: 168px;
-                  cursor: pointer;
-                  height: 35px;
-                  line-height: 35px;
-                  color: #000;
-                  text-indent: 8px;
-                  &:hover {
-                    background-color: #ecf0f1;
-                    border-radius: 5%;
-                    color: #ccc;
+                  .item {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 180px;
+                    cursor: pointer;
+                    height: 25px;
+                    line-height: 25px;
+                    color: #000;
+                    text-indent: 8px;
+                    font-size: 12px;
+                    padding-left: 5px;
+                    &:hover {
+                      background-color: #ddd;
+                      border-radius: 5%;
+                    }
                   }
-
-                  // &.active {
-                  //   background-color: #ecf0f1;
-                  //   color: #2ecc71;
-                  // }
                 }
               }
               span.blue {
-                color: #7ab3dd;
+                color: #409eff;
               }
             }
           }

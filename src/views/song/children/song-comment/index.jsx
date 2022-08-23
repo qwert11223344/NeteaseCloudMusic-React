@@ -8,14 +8,15 @@ import { setIsShowLogin } from '@/store/action/login';
 
 import CommentContent from '@/components/comment-content/inedx';
 import WNPagination from '@/components/pagination';
-export default function SongComment() {
+import { useCallback } from 'react';
+export default function SongComment({ currentSong }) {
   const disPatch = useDispatch();
   const [songComment, setSongComment] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const { currentSong } = useSelector(
-    state => state.playBarReducer,
-    shallowEqual
-  );
+  // const { currentSong } = useSelector(
+  //   state => state.playBarReducer,
+  //   shallowEqual
+  // );
   const { isLogin } = useSelector(state => state.loginReducer);
   const { totalComment } = useSelector(state => state.commentReducer);
   useEffect(() => {
@@ -38,15 +39,16 @@ export default function SongComment() {
       disPatch(changeTotalComment(total));
     };
     getSongComment(currentSong.id);
+    // console.log(songComment)
   }, [currentSong, disPatch, currentPage]);
   //切换页码
   const onPageChange = v => {
     setCurrentPage(v);
   };
   //文本域焦点
-  const commentFocus = () => {
+  const commentFocus = useCallback(() => {
     if (!isLogin) disPatch(setIsShowLogin(true));
-  };
+  }, [isLogin, disPatch]);
   return (
     <div>
       <CommonHeaderRcm
