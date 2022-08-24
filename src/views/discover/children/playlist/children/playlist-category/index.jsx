@@ -1,4 +1,7 @@
-import { asyncGetPlayListCat } from '@/store/action/playlist';
+import {
+  asyncGetPlayListCat,
+  setPlayListCurrentCat
+} from '@/store/action/playlist';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './index.module.scss';
@@ -28,7 +31,7 @@ export default function PlayListCategory() {
                     <div className='item' key={si.name}>
                       <span
                         className='link'
-                        // onClick={e => selectCategory(sItem.name)}
+                        onClick={e => disPatch(setPlayListCurrentCat(si.name))}
                       >
                         {si.name}
                       </span>
