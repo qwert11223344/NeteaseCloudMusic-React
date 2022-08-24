@@ -1,0 +1,12 @@
+.playlistDetail {
+  :global {
+    .playlist-detail-content {
+      display: flex;
+      max-width: 900px;
+      height: auto;
+      background-color: #fff;
+      border: 1px solid #d3d3d3;
+      margin: 0 auto;
+    }
+  }
+}

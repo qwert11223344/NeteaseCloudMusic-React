@@ -11,6 +11,7 @@ export default function SongItem({
   artist,
   dr = 0,
   coverPic = '',
+  al,
   i
 }) {
   const addPlaylist = useAddPlayList();
@@ -68,13 +69,10 @@ export default function SongItem({
               </a>
             </div>{' '}
           </div>
-          <NavLink
-            to='/discover/song'
-            className='song-item singer'
-            // onClick={e => playMusic(e, true)}
-          >
+          <NavLink to='/discover/song' className='song-item singer'>
             {artist}
           </NavLink>
+          {al && <span className='album'>{al}</span>}
         </div>
       </div>
     </div>

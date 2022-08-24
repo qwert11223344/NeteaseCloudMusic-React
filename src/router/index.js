@@ -6,6 +6,7 @@ const Mine = React.lazy(() => import('@/views/mine'));
 const Error = React.lazy(() => import('@/views/error'));
 const SongDetail = React.lazy(() => import('@/views/song'));
 const SearchDetail = React.lazy(() => import('@/views/search'));
+const PlaylistDetail = React.lazy(() => import('@/views/playlist'));
 
 const Recommend = React.lazy(() =>
   import('@/views/discover/children/recommend')
@@ -71,6 +72,10 @@ const routes = [
   {
     path: '/search',
     component: SearchDetail
+  },
+  {
+    path: '/playlist',
+    component: PlaylistDetail
   },
   {
     component: Error

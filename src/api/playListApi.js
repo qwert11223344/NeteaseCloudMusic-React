@@ -22,5 +22,14 @@ class PlayListApi {
       url: '/playlist/highquality/tags'
     });
   }
+  //歌单详情
+  getPlaylistDetail(id) {
+    return http.request({
+      url: '/playlist/detail',
+      params: {
+        id
+      }
+    });
+  }
 }
 export default new PlayListApi();
