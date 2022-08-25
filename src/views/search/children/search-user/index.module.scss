@@ -35,6 +35,10 @@
           }
           .user-desc {
             color: #999;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 200px;
           }
         }
       }

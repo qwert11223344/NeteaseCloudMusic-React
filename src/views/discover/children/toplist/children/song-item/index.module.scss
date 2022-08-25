@@ -98,6 +98,12 @@
           overflow: hidden;
           width: 160px;
         }
+        .album {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 160px;
+        }
       }
     }
   }

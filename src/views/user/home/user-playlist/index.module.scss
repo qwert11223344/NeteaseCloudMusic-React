@@ -1,0 +1,9 @@
+.userPlayList {
+  :global {
+    .user-playlist-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 50px;
+    }
+  }
+}

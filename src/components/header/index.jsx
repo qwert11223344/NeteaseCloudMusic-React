@@ -47,9 +47,9 @@ export default function Header() {
       searchKeyWords && asyncGetSearchSuggest();
     }, [searchKeyWords]);
 
-    const searchSong = useCallback(
-      id => {
-        history.push(`song?id=${id}`);
+    const search = useCallback(
+      (type, id) => {
+        history.push(`/${type}?id=${id}`);
       },
       [history]
     );
@@ -89,7 +89,7 @@ export default function Header() {
                     <div
                       className='item'
                       key={i.id}
-                      onClick={() => searchSong(i.id)}
+                      onClick={() => search('song', i.id)}
                     >
                       <span className='blue'>{i.name}</span>-
                       {i?.artists[0].name}
@@ -103,7 +103,11 @@ export default function Header() {
                 <span className='option-name'>歌手</span>
                 <div className='main'>
                   {searchSuggest.artists.map(i => (
-                    <div className='item' key={i.id}>
+                    <div
+                      className='item'
+                      key={i.id}
+                      onClick={() => search('artist', i.id)}
+                    >
                       <span>{i.name}</span>
                     </div>
                   ))}
@@ -115,7 +119,11 @@ export default function Header() {
                 <span className='option-name'>专辑</span>
                 <div className='main'>
                   {searchSuggest.albums.map(i => (
-                    <div className='item' key={i.id}>
+                    <div
+                      className='item'
+                      key={i.id}
+                      onClick={() => search('album', i.id)}
+                    >
                       <span className='blue'>{i.name}</span>-{i?.artist.name}
                     </div>
                   ))}
@@ -127,7 +135,11 @@ export default function Header() {
                 <span className='option-name'>歌单</span>
                 <div className='main'>
                   {searchSuggest.playlists.map(i => (
-                    <div className='item' key={i.id}>
+                    <div
+                      className='item'
+                      key={i.id}
+                      onClick={() => search('playlist', i.id)}
+                    >
                       <span>{i.name}</span>
                     </div>
                   ))}

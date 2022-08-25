@@ -1,6 +1,6 @@
 import { getCount, getImageSize } from '@/utils';
 import styles from './index.module.scss';
-export default function SongCover({ info }) {
+export default function SongCover({ info, showWriter = true }) {
   const imgUrl = info?.picUrl || info?.coverImgUrl;
   const writer =
     (info && info.copywriter) || info?.nickname || info?.creator?.nickname;
@@ -23,7 +23,7 @@ export default function SongCover({ info }) {
         </div>
       </div>
       <div className='cover-title'>{info.name}</div>
-      <div className='cover-source'>{writer}</div>
+      {showWriter && <div className='cover-source'>{writer}</div>}
     </a>
   );
 }

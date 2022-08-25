@@ -1,3 +1,5 @@
+import { address } from '@/common/localData';
+
 /**
  * 对数字进行格式化
  * @param {number} count
@@ -84,4 +86,8 @@ export function parseLyric(lyrics) {
     }
   }
   return lyricList;
+}
+
+export function formateProvince(id) {
+  return address[id];
 }
