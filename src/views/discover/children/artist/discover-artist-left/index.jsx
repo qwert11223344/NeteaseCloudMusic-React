@@ -30,7 +30,7 @@ export default function DiscoverArtistLeft({
                   setCurrentPage(1);
                   i.area !== area && setArea(i.area);
                   ai.type !== type && setType(ai.type);
-                  history.push(ai.url);
+                  history.replace(ai.url);
                 }}
               >
                 {ai.name}

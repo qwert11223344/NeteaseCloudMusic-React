@@ -7,6 +7,7 @@ const Error = React.lazy(() => import('@/views/error'));
 const SongDetail = React.lazy(() => import('@/views/song'));
 const SearchDetail = React.lazy(() => import('@/views/search'));
 const PlaylistDetail = React.lazy(() => import('@/views/playlist'));
+const ArtistDetail = React.lazy(() => import('@/views/artist'));
 
 const Recommend = React.lazy(() =>
   import('@/views/discover/children/recommend')
@@ -76,6 +77,10 @@ const routes = [
   {
     path: '/playlist',
     component: PlaylistDetail
+  },
+  {
+    path: '/artist',
+    component: ArtistDetail
   },
   {
     component: Error

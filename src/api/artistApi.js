@@ -14,5 +14,14 @@ class ArtistApi {
       }
     });
   }
+  //歌手详情
+  getArtistDetail(id) {
+    return http.request({
+      url: '/artist/detail',
+      params: {
+        id
+      }
+    });
+  }
 }
 export default new ArtistApi();
