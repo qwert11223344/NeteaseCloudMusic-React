@@ -34,7 +34,6 @@ export default function PlaylistDetailLeft({ playlistDetail }) {
     playlistDetail &&
     playlistDetail.tracks &&
     playlistDetail.tracks.slice(0, 10);
-  console.log(playlistDetail);
 
   //收藏歌单
   const collectPlaylist = useCallback(() => {

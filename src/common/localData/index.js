@@ -177,3 +177,165 @@ export const discoverNav = [
     link: '/discover/album'
   }
 ];
+// 歌手分类
+export const artistCategories = [
+  {
+    id: 1,
+    title: '推荐',
+    area: -1,
+    artists: [
+      {
+        name: '推荐歌手',
+        type: -1,
+        url: '/discover/artist',
+        id: 0
+      }
+      // {
+      //   name: '入驻歌手',
+      //   type: 2,
+      //   url: '#/discover/artist?cat=5001',
+      //   dataPath: '/artist/list?cat=5001'
+      // }
+    ]
+  },
+  {
+    id: 2,
+    title: '华语',
+    area: 7,
+    artists: [
+      {
+        name: '华语男歌手',
+        url: '/discover/artist?type=1&area=7',
+        type: 1
+      },
+      {
+        name: '华语女歌手',
+        url: '/discover/artist?type=2&area=7',
+        type: 2
+      },
+      {
+        name: '华语组合/乐队',
+        url: '/discover/artist?type=3&area=7',
+        type: 3
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: '欧美',
+    area: 96,
+    artists: [
+      {
+        name: '欧美男歌手',
+        url: '/discover/artist?type=1&area=96',
+        type: 1
+      },
+      {
+        name: '欧美女歌手',
+        url: '/discover/artist?type=2&area=96',
+        type: 2
+      },
+      {
+        name: '欧美组合乐队',
+        url: '/discover/artist?type=3&area=96',
+        type: 3
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: '日本',
+    area: 8,
+    artists: [
+      {
+        name: '日本男歌手',
+        url: '/discover/artist?type=1&area=8',
+        type: 1
+      },
+      {
+        name: '日本女歌手',
+        url: '/discover/artist?type=2&area=8',
+        type: 2
+      },
+      {
+        name: '日本组合/乐队',
+        url: '/discover/artist?type=3&area=8',
+        type: 3
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: '韩国',
+    area: 16,
+    artists: [
+      {
+        name: '韩国男歌手',
+        url: '/discover/artist?type=1&area=16',
+        type: 1
+      },
+      {
+        name: '韩国女歌手',
+        url: '/discover/artist?type=2&area=16',
+        type: 2
+      },
+      {
+        name: '韩国组合/乐队',
+        url: '/discover/artist?type=3&area=16',
+        type: 3
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: '其他',
+    area: 0,
+    artists: [
+      {
+        name: '其他男歌手',
+        url: '/discover/artist?type=1&area=0',
+        type: 1
+      },
+      {
+        name: '其他女歌手',
+        url: '/discover/artist?type=2&area=0',
+        type: 2
+      },
+      {
+        name: '其他组合乐队',
+        url: '/discover/artist?type=3&area=0',
+        type: 3
+      }
+    ]
+  }
+];
+//姓氏
+export const surname = [
+  { label: '热门', value: '' },
+  { label: 'A', value: 'A' },
+  { label: 'B', value: 'B' },
+  { label: 'C', value: 'C' },
+  { label: 'D', value: 'D' },
+  { label: 'E', value: 'E' },
+  { label: 'F', value: 'F' },
+  { label: 'G', value: 'G' },
+  { label: 'H', value: 'H' },
+  { label: 'I', value: 'I' },
+  { label: 'J', value: 'J' },
+  { label: 'K', value: 'K' },
+  { label: 'L', value: 'L' },
+  { label: 'M', value: 'M' },
+  { label: 'N', value: 'N' },
+  { label: 'O', value: 'O' },
+  { label: 'P', value: 'P' },
+  { label: 'Q', value: 'Q' },
+  { label: 'R', value: 'R' },
+  { label: 'S', value: 'S' },
+  { label: 'T', value: 'T' },
+  { label: 'U', value: 'U' },
+  { label: 'V', value: 'V' },
+  { label: 'W', value: 'W' },
+  { label: 'X', value: 'X' },
+  { label: 'Y', value: 'Y' },
+  { label: 'Z', value: 'Z' }
+];

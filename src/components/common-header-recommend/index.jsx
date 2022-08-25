@@ -55,6 +55,7 @@ CommonHeaderRcm.propTypes = {
   clickKeywords: propTypes.func
 };
 CommonHeaderRcm.defaultProps = {
+  title: '',
   keywords: [],
   showIcon: true,
   right: '更多'

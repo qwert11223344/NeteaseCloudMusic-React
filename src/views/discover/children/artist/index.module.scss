@@ -1,0 +1,21 @@
+.discoverArtist {
+  display: flex;
+  justify-content: center;
+  :global {
+    .artist-container {
+      display: flex;
+      width: 980px;
+      background-color: #ffffff;
+      .artist-container-left {
+        width: 180px;
+        background-color: #f3f3f3;
+        border: 1px solid #ddd;
+        border-bottom: none;
+      }
+      .artist-container-right {
+        padding: 25px;
+        flex: 1;
+      }
+    }
+  }
+}
