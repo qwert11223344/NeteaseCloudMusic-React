@@ -8,7 +8,7 @@ export default function SongItem({
   index = '',
   songId,
   songName,
-  artist,
+  artist = '',
   dr = 0,
   coverPic = '',
   al,
@@ -24,17 +24,18 @@ export default function SongItem({
     <div className={styles.songItemContainer}>
       <div className='song-wrapper'>
         <div className='song-item rank-count'>{index}</div>
-        {coverPic && (
-          <NavLink
-            to={`/song?id=${songId}`}
-            className='song-item'
-            // onClick={e => playMusic(e, true)}
-          >
-            <img src={getImageSize(coverPic, 50)} alt='' />
-          </NavLink>
-        )}
+
         <div className='song-item song-info'>
           <div className='left-info' style={{ width: coverPic ? 258 : 328 }}>
+            {coverPic && (
+              <NavLink
+                to={`/song?id=${songId}`}
+                className='song-item'
+                // onClick={e => playMusic(e, true)}
+              >
+                <img src={getImageSize(coverPic, 50)} alt='' />
+              </NavLink>
+            )}
             <PlayCircleOutlined className='font-active' onClick={playMusic} />
             <a href={`#/song?id=${songId}`} className='text-nowrap'>
               {songName}

@@ -1,6 +1,11 @@
-import { getImageSize } from '@/utils';
+import { formatDate, getImageSize } from '@/utils';
 import styles from './index.module.scss';
-export default function AlbumCover({ item, imgWidth = 100 }) {
+export default function AlbumCover({
+  item,
+  imgWidth = 100,
+  showArtist = true,
+  showCreateTime = false
+}) {
   return (
     <div className={styles.albumCover} style={{ width: 153 }}>
       <div
@@ -17,7 +22,14 @@ export default function AlbumCover({ item, imgWidth = 100 }) {
       <div className='album-name text-nowrap' style={{ width: 130 }}>
         {item?.name}
       </div>
-      <div className='artist text-nowrap'>{item?.artist?.name}</div>
+      {showArtist && (
+        <div className='artist text-nowrap'>{item?.artist?.name}</div>
+      )}
+      {showCreateTime && (
+        <div className='createTime text-nowrap'>
+          {formatDate(item?.publishTime, 'yyyy.MM.dd')}
+        </div>
+      )}
     </div>
   );
 }

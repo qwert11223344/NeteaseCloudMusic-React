@@ -1,7 +1,5 @@
 .artistCover {
   display: flex;
-  width: 150px;
-  height: 190px;
   :global {
     .artist-cover-wrapper {
       display: flex;
@@ -12,10 +10,10 @@
       }
       .artist-name {
         margin-top: 10px;
-        width: 130px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-align: center;
       }
     }
   }

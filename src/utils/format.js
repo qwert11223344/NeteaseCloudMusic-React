@@ -91,3 +91,7 @@ export function parseLyric(lyrics) {
 export function formateProvince(id) {
   return address[id];
 }
+
+export function formateParagraph(paragraph) {
+  return paragraph.split('\n');
+}

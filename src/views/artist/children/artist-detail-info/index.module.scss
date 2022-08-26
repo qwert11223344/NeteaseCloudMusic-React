@@ -1,2 +1,23 @@
 .artistDetailInfo {
+  :global {
+    .cover-img {
+      position: relative;
+      width: 640px;
+      height: 300px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+
+      .userHome-btn,
+      .collectArtist-btn {
+        position: absolute;
+        bottom: 20px;
+      }
+      .collectArtist-btn {
+        right: 20px;
+      }
+      .userHome-btn {
+        right: 120px;
+      }
+    }
+  }
 }

@@ -28,7 +28,8 @@
       }
     }
     .album-name,
-    .artist {
+    .artist,
+    .createTime {
       &:hover {
         text-decoration: underline;
         cursor: pointer;

@@ -1,6 +1,98 @@
 .artistDetail {
-  width: 900px;
-  height: 600px;
+  display: flex;
+  width: 980px;
   background-color: #fff;
   margin: 0 auto;
+  padding: 40px 20px 40px 40px;
+  :global {
+    .artist-detail-left {
+      border-right: 1px solid #ccc;
+      padding-right: 30px;
+      .option-group {
+        width: 640px;
+        height: 39px;
+        padding-bottom: 1px;
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        display: flex;
+        font-size: 14px;
+        border-top: none;
+        cursor: pointer;
+        a {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 2px 2px 0 0;
+          height: 100%;
+          background-position: 0 0;
+          border-bottom: 1px solid #ccc;
+          &:hover {
+            background-position: -10px -44px;
+            text-decoration: none;
+          }
+          &.active {
+            background-position: -10px -89px;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: none;
+            &:first-child {
+              border-left: none;
+            }
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+      .artist-detail-content {
+        width: 640px;
+        padding-top: 20px;
+      }
+    }
+    .artist-detail-right {
+      padding: 20px;
+      .title {
+        text-align: left;
+        font-weight: 700;
+      }
+      section {
+        text-align: center;
+      }
+      .hot-artist-list,
+      .download {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 15px;
+        border-top: 1px solid #ccc;
+        gap: 0 15px;
+      }
+      .download {
+        padding: 0;
+        height: 70px;
+        background-position: 0 -380px;
+        display: flex;
+        span {
+          flex: 1;
+          height: 100%;
+          cursor: pointer;
+        }
+        .ios {
+          &:hover {
+            background-position: 0 -460px;
+          }
+        }
+        .windows {
+          &:hover {
+            background-position: -75px -460px;
+          }
+        }
+        .android {
+          &:hover {
+            background-position: -149px -460px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,30 @@
+.artistAllVideo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  :global {
+    .mv-item {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      width: 137px;
+      position: relative;
+      img {
+        border: 1px solid #ccc;
+      }
+      .play {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -70%);
+        background-position: -30px -135px;
+        cursor: pointer;
+        &:hover {
+          background-position: -30px -85px;
+        }
+      }
+    }
+  }
+}

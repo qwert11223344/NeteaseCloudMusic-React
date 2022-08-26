@@ -19,6 +19,15 @@ const Toplist = React.lazy(() => import('@/views/discover/children/toplist'));
 const Artist = React.lazy(() => import('@/views/discover/children/artist'));
 const Playlist = React.lazy(() => import('@/views/discover/children/playlist'));
 
+const ArtistHotSong = React.lazy(() =>
+  import('@/views/artist/children/hot-song')
+);
+const ArtistAllAlbum = React.lazy(() =>
+  import('@/views/artist/children/all-album')
+);
+const ArtistMV = React.lazy(() => import('@/views/artist/children/mv'));
+const ArtistDesc = React.lazy(() => import('@/views/artist/children/desc'));
+
 const UserHome = React.lazy(() => import('@/views/user/home'));
 const routes = [
   {
@@ -78,6 +87,29 @@ const routes = [
     ]
   },
   {
+    path: '/artist',
+    component: ArtistDetail,
+    routes: [
+      {
+        path: '/artist/',
+        exact: true,
+        component: ArtistHotSong
+      },
+      {
+        path: '/artist/album',
+        component: ArtistAllAlbum
+      },
+      {
+        path: '/artist/mv',
+        component: ArtistMV
+      },
+      {
+        path: '/artist/desc',
+        component: ArtistDesc
+      }
+    ]
+  },
+  {
     path: '/mine',
     component: Mine
   },
@@ -96,10 +128,6 @@ const routes = [
   {
     path: '/playlist',
     component: PlaylistDetail
-  },
-  {
-    path: '/artist',
-    component: ArtistDetail
   },
 
   {

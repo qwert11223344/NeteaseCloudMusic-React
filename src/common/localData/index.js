@@ -165,13 +165,14 @@ export const discoverNav = [
     link: '/discover/playlist'
   },
   {
-    title: '主播电台',
-    link: '/discover/djradio'
-  },
-  {
     title: '歌手',
     link: '/discover/artist'
   },
+  {
+    title: '主播电台',
+    link: '/discover/djradio'
+  },
+
   {
     title: '每日推荐',
     link: '/discover/album'
