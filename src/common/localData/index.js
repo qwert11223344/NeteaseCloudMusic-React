@@ -73,7 +73,7 @@ export const loginMenu = [
     icon: <UserOutlined />,
 
     label: '我的主页',
-    to: '/',
+    to: '/user/home',
     key: 1
   },
   {
@@ -85,7 +85,7 @@ export const loginMenu = [
   {
     icon: <SmileOutlined />,
     label: '我的等级',
-    to: '/',
+    to: '/user/level',
     key: 3
   },
   {
@@ -97,7 +97,7 @@ export const loginMenu = [
   {
     icon: <SettingOutlined />,
     label: '个人设置',
-    to: '/',
+    to: '/user/update',
     key: 5
   },
   {
@@ -109,7 +109,7 @@ export const loginMenu = [
   {
     icon: <LogoutOutlined />,
     label: '退出',
-    to: '/',
+    to: '/logout',
     key: 7
   }
 ];

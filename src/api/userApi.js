@@ -1,4 +1,6 @@
+import localKey from '@/common/localStorageKey';
 import { http } from '@/plugin/axios';
+import localCache from '@/utils/localStorage';
 
 class UserApi {
   getUserInfo(uid) {
@@ -20,6 +22,27 @@ class UserApi {
         uid,
         offset,
         limit
+      }
+    });
+  }
+  //获取帐号信息
+  getAccountInfo() {
+    return http.request({
+      url: '/user/account',
+      method: 'post',
+      data: {
+        cookie: localCache.get(localKey.USER_COOKIE) ?? ''
+      }
+    });
+  }
+
+  //退出登录
+  logout() {
+    return http.request({
+      url: '/logout',
+      method: 'post',
+      data: {
+        cookie: localCache.get(localKey.USER_COOKIE) ?? ''
       }
     });
   }

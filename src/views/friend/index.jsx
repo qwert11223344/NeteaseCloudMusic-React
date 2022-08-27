@@ -1,4 +1,6 @@
 import { setIsShowLogin } from '@/store/action/login';
+import { SmileOutlined } from '@ant-design/icons';
+import { Result } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './index.module.scss';
 export default function Friend() {
@@ -23,5 +25,23 @@ export default function Friend() {
       </div>
     );
   };
-  return <div className={styles.Friend}>{isLogin ? null : <NotLogin />}</div>;
+  return (
+    <div className={styles.Friend}>
+      {isLogin ? (
+        <Result
+          status='error'
+          title='以后会有的'
+          style={{
+            height: 400,
+            width: 980,
+            margin: '0 auto',
+            background: '#fff'
+          }}
+          icon={<SmileOutlined />}
+        />
+      ) : (
+        <NotLogin />
+      )}
+    </div>
+  );
 }

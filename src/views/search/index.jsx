@@ -75,6 +75,7 @@ export default function SearchDetail() {
   const changeSearchOption = (e, i, index) => {
     e.preventDefault();
     setCurrentIndex(index);
+    setSearchList([]);
     setType(+i.link.split('=').pop());
   };
   const pressEnter = () => {

@@ -3,7 +3,8 @@ import { BaseUrl, timeout } from './config';
 const http = new Axios({
   baseURL: BaseUrl,
   timeout,
-  headers: {}
+  headers: {},
+  withCredentials: true
 });
 
 export { http };

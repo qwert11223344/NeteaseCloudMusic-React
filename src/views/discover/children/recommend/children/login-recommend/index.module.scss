@@ -1,8 +1,9 @@
 .loginRecommend {
-  height: 126px;
+  height: 160px;
+  padding: 10px;
   :global {
     .profile-info {
-      background-position: 0 0;
+      background-position: 0 10px;
       height: 100%;
       padding: 0 17px;
 
@@ -23,6 +24,56 @@
         text-shadow: 0 1px 0 #8a060b;
         background-position: 0 -195px;
         cursor: pointer;
+      }
+    }
+    .already-login-top {
+      display: flex;
+      font-weight: 700;
+
+      justify-content: space-around;
+      .avatar {
+        border: 1px solid #ccc;
+        width: 80px;
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .nickname {
+          width: 100px;
+        }
+        .level {
+          height: 20px;
+          width: 30px;
+          color: #aaa;
+          text-align: center;
+          background-position: -130px -84px;
+          i {
+            display: inline-block;
+            margin-left: 30px;
+            padding-right: 10px;
+            width: 10px;
+            height: 100%;
+            background-position: -190px -84px;
+          }
+        }
+      }
+    }
+    .already-login-bottom {
+      display: flex;
+      font-size: 12px;
+      padding: 20px;
+      div {
+        border-right: 1px solid #ccc;
+        text-align: center;
+        flex: 1;
+      }
+      .event-count,
+      .flower-count,
+      .fun-count {
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
       }
     }
   }

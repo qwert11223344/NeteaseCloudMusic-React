@@ -1,16 +1,20 @@
-import { Button, Modal } from 'antd';
-import { PhoneOutlined } from '@ant-design/icons';
+import { Button, message, Modal } from 'antd';
 import styles from './index.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsShowLogin } from '@/store/action/login';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { setCookie, setIsLogin, setIsShowLogin } from '@/store/action/login';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import qrCodeApi from '@/api/qrCodeApi';
 import { useState } from 'react';
+import localCache from '@/utils/localStorage';
+import localKey from '@/common/localStorageKey';
 export default function CommonLogin() {
   const disPatch = useDispatch();
   const loginWrapper = useRef('');
-  const { isShowLogin } = useSelector(state => state.loginReducer);
+  const { isShowLogin } = useSelector(
+    state => state.loginReducer,
+    shallowEqual
+  );
   const [qrUnikey, setQrUnikey] = useState('');
   const [qrimg, setQrimg] = useState('');
   const [qrCodeInfo, setQrCodeInfo] = useState({});
@@ -36,8 +40,20 @@ export default function CommonLogin() {
     //检测二维码状态
     const checkQrCode = async () => {
       const qrCodeInfo = await qrCodeApi.checkQrCode(qrUnikey);
-      console.log(qrCodeInfo);
       setQrCodeInfo(qrCodeInfo);
+      if (qrCodeInfo.code === 803) {
+        const { cookie } = qrCodeInfo;
+        const maxAge =
+          +cookie
+            .split(';')
+            .find(i => i.includes('Max-Age'))
+            ?.split('=')
+            .pop() / 1000;
+        localCache.set(localKey.USER_COOKIE, cookie, maxAge);
+        disPatch(setCookie(cookie));
+        disPatch(setIsLogin(true));
+        disPatch(setIsShowLogin(false));
+      }
     };
     isShowLogin &&
       qrUnikey &&
@@ -48,19 +64,25 @@ export default function CommonLogin() {
     return () => {
       clearInterval(timer.current);
     };
-  }, [qrUnikey, isShowLogin]);
+  }, [qrUnikey, isShowLogin, disPatch]);
   const defaultModal = () => {
     return (
-      <>
-        <div className='login-container'>
-          {qrCodeInfo.code === 802 ? <AlreadyScan /> : <NotScan />}
-        </div>
-        <div className='login-footer'>
-          <Button className='btn' shape='round'>
-            选择其他登录方式
-          </Button>
-        </div>
-      </>
+      qrCodeInfo.code !== 803 && (
+        <>
+          <div className='login-container'>
+            {qrCodeInfo.code === 802 ? <AlreadyScan /> : <NotScan />}
+          </div>
+          <div className='login-footer'>
+            <Button
+              className='btn'
+              shape='round'
+              onClick={() => message.info('请使用网易云app扫码登录哦')}
+            >
+              选择其他登录方式
+            </Button>
+          </div>
+        </>
+      )
     );
   };
 

@@ -194,15 +194,24 @@
   width: 140px;
   background-color: #333;
   :global {
-    .ant-dropdown-menu-item {
+    .menu-item {
+      font-size: 12px;
+      display: flex;
       color: #ccc;
+      justify-content: space-around;
+      cursor: pointer;
+      padding: 5px 20px;
       span {
-        display: block;
+        flex: 1;
+        text-align: center;
       }
-    }
-    .ant-dropdown-menu-item-active {
-      color: #ddd;
-      background-color: #444;
+      .label {
+        flex: 3;
+      }
+      &:hover {
+        color: #ddd;
+        background-color: #444;
+      }
     }
   }
 }

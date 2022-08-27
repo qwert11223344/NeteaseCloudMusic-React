@@ -1,23 +1,41 @@
 import styles from './index.module.scss';
 import { headerLinks, loginMenu } from '@/common/localData/index';
 import { NavLink } from 'react-router-dom';
-import { Avatar, Badge, Dropdown, Input, Menu } from 'antd';
+import { Avatar, Badge, Dropdown, Input, Menu, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsShowLogin } from '@/store/action/login';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import {
+  asyncGetAccountInfo,
+  setCookie,
+  setIsLogin,
+  setIsShowLogin
+} from '@/store/action/login';
 import CommonLogin from '../common-login';
 import { useEffect } from 'react';
 import searchApi from '@/api/searchApi';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRef } from 'react';
+import userApi from '@/api/userApi';
+import localCache from '@/utils/localStorage';
+import localKey from '@/common/localStorageKey';
 export default function Header() {
   const disPatch = useDispatch();
-  const { isLogin } = useSelector(state => state.loginReducer);
+  const { isLogin, accountInfo } = useSelector(
+    state => state.loginReducer,
+    shallowEqual
+  );
+  useEffect(() => {
+    isLogin && disPatch(asyncGetAccountInfo());
+  }, [isLogin, disPatch]);
   const GroupItem = ({ item, index }) => {
     return index > 2 ? (
-      <a href={item.link} className='header-item'>
+      <a
+        href={item.link}
+        target='_blank'
+        rel='noreferrer'
+        className='header-item'
+      >
         {item.title}
       </a>
     ) : (
@@ -60,6 +78,7 @@ export default function Header() {
           setSearchKeyWords('');
         })();
     }, [searchKeyWords, history]);
+
     return (
       <div className='search-wrapper'>
         <Input
@@ -152,9 +171,35 @@ export default function Header() {
     );
   };
 
-  const profileDownMenu = () => {
+  const ProfileDownMenu = () => {
+    const history = useHistory();
+    const changeSelect = item => {
+      switch (item.to) {
+        case '/user/home':
+          history.push(`${item.to}?id=${accountInfo.userId}`);
+          break;
+        case '/logout':
+          (async function () {
+            await userApi.logout();
+            message.success('退出成功');
+            localCache.remove(localKey.USER_COOKIE);
+            disPatch(setIsLogin(false));
+            disPatch(setCookie(''));
+          })();
+          break;
+        default:
+          break;
+      }
+    };
     return isLogin ? (
-      <Menu className={styles.dropList} items={loginMenu} />
+      <ul className={styles.dropList}>
+        {loginMenu.map(i => (
+          <li key={i.key} className='menu-item' onClick={() => changeSelect(i)}>
+            <span className='icon'>{i.icon}</span>
+            <span className='label'>{i.label}</span>
+          </li>
+        ))}
+      </ul>
     ) : (
       ''
     );
@@ -162,8 +207,8 @@ export default function Header() {
 
   const ShowProfileContent = () => {
     return (
-      <Badge size='small' count={2}>
-        <Avatar></Avatar>
+      <Badge size='small' count={0}>
+        <Avatar src={accountInfo?.avatarUrl} />
       </Badge>
     );
   };
@@ -186,7 +231,7 @@ export default function Header() {
         <div className='header-right'>
           <SearchInput />
           <div className='center'>创作者中心</div>
-          <Dropdown overlay={profileDownMenu}>
+          <Dropdown overlay={<ProfileDownMenu />}>
             <div
               className='login'
               onClick={() => !isLogin && disPatch(setIsShowLogin(true))}
@@ -196,7 +241,6 @@ export default function Header() {
           </Dropdown>
         </div>
       </div>
-      {/* <div className='red-line'></div> */}
       {<CommonLogin />}
     </header>
   );
