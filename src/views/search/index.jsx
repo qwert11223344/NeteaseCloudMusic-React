@@ -90,12 +90,12 @@ export default function SearchDetail() {
             value={searchKeyWords}
             onChange={inputChange}
             style={{ width: 490 }}
-            onPressEnter={pressEnter}
+            onSearch={pressEnter}
           />
         </div>
         <div className='search-detail-content'>
           <div className='search-info'>
-            搜索"{searchKeyWords}",找到
+            搜索"{decodeURI(location.search.split('=').pop())}",找到
             <span className='music-amount'> {searchCount} </span>个
             {searchCategories[currentIndex].title}
           </div>

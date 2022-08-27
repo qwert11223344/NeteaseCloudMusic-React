@@ -2,7 +2,7 @@ import { getImageSize } from '@/utils';
 import styles from './index.module.scss';
 export default function CoverSinger({ info }) {
   return (
-    <a className={styles.coverSinger} href={info.detail}>
+    <a className={styles.coverSinger} href={`#/artist?id=${info.id}`}>
       <div className='image'>
         <img src={getImageSize(info.picUrl, 62)} alt='' />
       </div>

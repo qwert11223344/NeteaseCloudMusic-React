@@ -10,7 +10,6 @@
     .list-header {
       display: flex;
       height: 40px;
-      background: url('/assets/img/playlist_bg.png');
       background-position: 0 0;
       .playlist-header-left {
         width: 553px;
@@ -57,7 +56,6 @@
     .list-main {
       display: flex;
       height: 260px;
-      background: url('/assets/img/playlist_bg.png');
       background-position: -1014px 0;
       background-repeat: repeat-y;
       .main-playlist {

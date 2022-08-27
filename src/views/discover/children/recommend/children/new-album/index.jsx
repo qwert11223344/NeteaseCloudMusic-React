@@ -3,10 +3,12 @@ import AlbumCover from '@/components/album-cover';
 import CommonHeaderRcm from '@/components/common-header-recommend';
 import { Carousel } from 'antd';
 import { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function NewAlum() {
   const [newAlum, setNewAlum] = useState([]);
   const albumCarouselRef = useRef('');
+  const history = useHistory();
   useEffect(() => {
     const getNewAlbum = async () => {
       const { albums } = await recommendApi.getNewAlbum();
@@ -16,7 +18,10 @@ export default function NewAlum() {
   }, []);
   return (
     <div className={styles.newAlbum}>
-      <CommonHeaderRcm title='新碟上架' />
+      <CommonHeaderRcm
+        title='新碟上架'
+        clickRight={() => history.push(`/album`)}
+      />
       <div className='new-album-content'>
         <div className='inner'>
           <Carousel dots={false} autoplay={false} ref={albumCarouselRef}>

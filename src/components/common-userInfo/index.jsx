@@ -1,5 +1,7 @@
 import { formatDate, formateProvince, getCount, getImageSize } from '@/utils';
 import { Button, Tag } from 'antd';
+import { shallowEqual, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function CommonUserInfo({ userInfo }) {
@@ -19,14 +21,18 @@ export default function CommonUserInfo({ userInfo }) {
     createTime = 0,
     vipType = 0,
     mainAuthType = {},
-    level = 0
+    level = 0,
+    userId = ''
   } = userInfo;
   const desc = detailDescription || mainAuthType?.desc;
   const tags = mainAuthType?.tags;
-
   const RenderTags = () => {
     return tags && tags.map(t => <Tag key={t}>{t}</Tag>);
   };
+  const { accountInfo } = useSelector(
+    state => state.loginReducer,
+    shallowEqual
+  );
   return (
     userInfo && (
       <div className={styles.commonUserInfo}>
@@ -57,9 +63,11 @@ export default function CommonUserInfo({ userInfo }) {
                     }}
                   ></span>
                 )}
-                <Button type='primary' danger>
-                  关注
-                </Button>
+                {userId !== accountInfo.userId && (
+                  <Button type='primary' danger>
+                    关注
+                  </Button>
+                )}
               </h1>
               {artistId && (
                 <Button

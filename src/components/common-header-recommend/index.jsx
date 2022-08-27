@@ -6,7 +6,8 @@ export default function CommonHeaderRcm({
   keywords,
   showIcon,
   right,
-  clickKeywords
+  clickKeywords,
+  clickRight
 }) {
   return (
     <div
@@ -41,7 +42,7 @@ export default function CommonHeaderRcm({
         </ul>
       </div>
       <div className='common-header-right'>
-        <span>{right}</span>
+        <span onClick={clickRight}>{right}</span>
         {showIcon && <i className='icon'></i>}
       </div>
     </div>
@@ -52,7 +53,8 @@ CommonHeaderRcm.propTypes = {
   title: propTypes.string.isRequired,
   keywords: propTypes.array,
   showIcon: propTypes.bool,
-  clickKeywords: propTypes.func
+  clickKeywords: propTypes.func,
+  clickRight: propTypes.func
 };
 CommonHeaderRcm.defaultProps = {
   title: '',

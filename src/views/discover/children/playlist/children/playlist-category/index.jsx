@@ -1,12 +1,11 @@
-import {
-  asyncGetPlayListCat,
-  setPlayListCurrentCat
-} from '@/store/action/playlist';
+import { asyncGetPlayListCat } from '@/store/action/playlist';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function PlayListCategory() {
   const disPatch = useDispatch();
+  const history = useHistory();
   const { playListCat } = useSelector(state => state.playListReducer);
   useEffect(() => {
     disPatch(asyncGetPlayListCat());
@@ -15,7 +14,9 @@ export default function PlayListCategory() {
     <div className={styles.playListCategory}>
       <div className='arrow sprite_icon'></div>
       <div className='all'>
-        <span className='link'>全部风格</span>
+        <a className='link' href='#/discover/playlist'>
+          全部风格
+        </a>
       </div>
       <div className='category'>
         {playListCat.map((item, index) => {
@@ -31,7 +32,9 @@ export default function PlayListCategory() {
                     <div className='item' key={si.name}>
                       <span
                         className='link'
-                        onClick={e => disPatch(setPlayListCurrentCat(si.name))}
+                        onClick={() =>
+                          history.push(`/discover/playlist?cat=${si.name}`)
+                        }
                       >
                         {si.name}
                       </span>

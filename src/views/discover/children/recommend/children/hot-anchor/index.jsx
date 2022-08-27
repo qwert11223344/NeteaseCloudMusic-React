@@ -14,7 +14,7 @@ export default function HotAnchor() {
   }, []);
   return (
     <div className={styles.hotAnchor}>
-      <HeaderLine title='热门主播' right='查看更多 >' />
+      <HeaderLine title='热门主播' />
       <div className='anchor-container'>
         {hotDj && hotDj.map(i => <CoverAnchor key={i.id} info={i} />)}
       </div>

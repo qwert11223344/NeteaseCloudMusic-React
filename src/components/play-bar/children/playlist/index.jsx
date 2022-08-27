@@ -55,7 +55,7 @@ export default function PLayBarList({
       className={styles.playBarList}
       style={{ display: isShowPlayList ? 'block' : 'none' }}
     >
-      <div className='list-header'>
+      <div className='list-header playlist-bg'>
         <div className='playlist-header-left'>
           <h3 className='header-title'>播放列表({playList.length})</h3>
           <div>
@@ -89,7 +89,7 @@ export default function PLayBarList({
           </div>
         </div>
       </div>
-      <div className='list-main'>
+      <div className='list-main playlist-bg'>
         <div className='main-playlist'>
           {playList.length ? <HasLength /> : <NoLength />}
         </div>

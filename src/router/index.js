@@ -8,6 +8,7 @@ const SongDetail = React.lazy(() => import('@/views/song'));
 const SearchDetail = React.lazy(() => import('@/views/search'));
 const PlaylistDetail = React.lazy(() => import('@/views/playlist'));
 const ArtistDetail = React.lazy(() => import('@/views/artist'));
+const AlbumDetail = React.lazy(() => import('@/views/album'));
 const User = React.lazy(() => import('@/views/user'));
 
 const Recommend = React.lazy(() =>
@@ -108,6 +109,10 @@ const routes = [
         component: ArtistDesc
       }
     ]
+  },
+  {
+    path: '/album',
+    component: AlbumDetail
   },
   {
     path: '/mine',

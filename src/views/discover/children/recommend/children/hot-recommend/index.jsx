@@ -23,6 +23,7 @@ export default function HotRecommend() {
         title='热门推荐'
         keywords={['华语', '流行', '摇滚', '民谣', '电子']}
         clickKeywords={item => handleClickKeywords(item)}
+        clickRight={() => history.push('/discover/playlist')}
       />
       <div className='recommend-list'>
         {recommendList.map(l => (

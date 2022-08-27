@@ -14,13 +14,21 @@ export default function SettleSinger() {
   }, []);
   return (
     <div className={styles.settleSinger}>
-      <HeaderLine title='入驻歌手' right='查看全部 >' />
+      <HeaderLine
+        title='入驻歌手'
+        right={<a href='#/discover/artist'>查看全部 ></a>}
+      />
       <div className='singer-container'>
         {settleArtist.length &&
           settleArtist.map(i => <CoverSinger key={i.id} info={i} />)}
       </div>
       <div className='singer-footer'>
-        <a target='_blank' href='/recruit' className='a-btn1 a-btn2'>
+        <a
+          target='_blank'
+          href='https://music.163.com/st/musician'
+          rel='noreferrer'
+          className='a-btn1 a-btn2'
+        >
           <i> 申请成为网易音乐人</i>
         </a>
       </div>

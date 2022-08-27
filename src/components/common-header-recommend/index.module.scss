@@ -41,6 +41,12 @@
       }
     }
     .common-header-right {
+      span {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       .icon {
         display: inline-block;
         width: 12px;

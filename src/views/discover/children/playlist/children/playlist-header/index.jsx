@@ -8,7 +8,7 @@ export default function PlayListHeader() {
   return (
     <div className={styles.playListHeader}>
       <div className='header-left'>
-        <span className='title'>{currentCat}</span>
+        <span className='title'>{currentCat || '全部'}</span>
         <button
           className='select'
           onClick={() => setShowCategory(!showCategory)}

@@ -1,4 +1,5 @@
 import { formatDate, getImageSize } from '@/utils';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.scss';
 export default function AlbumCover({
   item,
@@ -6,8 +7,13 @@ export default function AlbumCover({
   showArtist = true,
   showCreateTime = false
 }) {
+  const history = useHistory();
   return (
-    <div className={styles.albumCover} style={{ width: 153 }}>
+    <div
+      className={styles.albumCover}
+      style={{ width: 153 }}
+      onClick={() => history.push(`/album?id=${item.id}`)}
+    >
       <div
         className={'album-image'}
         style={{
