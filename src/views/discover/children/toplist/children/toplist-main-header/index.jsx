@@ -19,7 +19,7 @@ export default function TopListMainHeader() {
   return (
     <div className={styles.topListMainHeader}>
       <div className='title-image'>
-        <img src={getImageSize(coverImgUrl, 150)} alt='' />
+        <img src={getImageSize(coverImgUrl ?? '', 150)} alt='' />
         <div className='image_cover msk'></div>
       </div>
       <div className='title-info'>

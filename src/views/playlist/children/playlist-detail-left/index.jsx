@@ -11,7 +11,7 @@ export default function PlaylistDetailLeft({ playlistDetail }) {
   const { isLogin } = useSelector(state => state.loginReducer, shallowEqual);
 
   const coverPicUrl =
-    playlistDetail && getImageSize(playlistDetail.coverImgUrl, 200);
+    playlistDetail && getImageSize(playlistDetail.coverImgUrl ?? '', 200);
   const title = playlistDetail && playlistDetail.name;
   const avatarPic =
     playlistDetail &&

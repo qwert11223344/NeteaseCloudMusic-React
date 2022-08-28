@@ -21,7 +21,7 @@ export default function AlbumCover({
           backgroundPosition: `0 ${imgWidth === 130 ? '-845px' : '-570px'}`
         }}
       >
-        <img src={getImageSize(item.picUrl, imgWidth)} alt=''></img>
+        <img src={getImageSize(item.picUrl ?? '', imgWidth)} alt=''></img>
 
         <i className='sprite_icon play'></i>
       </div>

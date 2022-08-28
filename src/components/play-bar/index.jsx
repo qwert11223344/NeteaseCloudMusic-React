@@ -200,7 +200,7 @@ export default function PlayBar() {
 
         <div className='playInfo'>
           <NavLink to='discover/song' className='image'>
-            <img src={getImageSize(currentSong?.al?.picUrl, 35)} alt='' />
+            <img src={getImageSize(currentSong?.al?.picUrl ?? '', 35)} alt='' />
           </NavLink>
           <div className='play-detail'>
             <div className='song-info'>

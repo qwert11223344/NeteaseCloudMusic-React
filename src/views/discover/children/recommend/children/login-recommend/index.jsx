@@ -30,7 +30,7 @@ export default function LoginRecommend() {
         <div className='already-login-top'>
           <img
             className='avatar'
-            src={getImageSize(accountInfo?.avatarUrl, 80)}
+            src={getImageSize(accountInfo?.avatarUrl ?? '', 80)}
             alt=''
           />
           <div className='info'>

@@ -185,6 +185,7 @@ export default function Header() {
             localCache.remove(localKey.USER_COOKIE);
             disPatch(setIsLogin(false));
             disPatch(setCookie(''));
+            history.replace('/');
           })();
           break;
         default:

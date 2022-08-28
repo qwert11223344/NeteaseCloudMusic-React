@@ -1,5 +1,5 @@
 const devBaseUrl = 'http://127.0.0.1:3000';
-const prodBaseUrl = '';
+const prodBaseUrl = 'http://127.0.0.1:3000';
 
 export const BaseUrl =
   process.env.NODE_ENV === 'development' ? devBaseUrl : prodBaseUrl;
